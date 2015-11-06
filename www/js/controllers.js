@@ -2,11 +2,14 @@ angular.module('app.controllers', [])
 
 .controller('billCtrl', function($scope) {
 
+  $scope.addBill = function(bill) {
+		$scope.bill = angular.copy(bill);
+	};
 })
 
 .controller('sharesCtrl', function($scope) {
 	$scope.list = [];
-	
+
 	$scope.addPeople = function(people) {
 		$scope.list.push(angular.copy(people));
 		people.name = '';
@@ -31,6 +34,3 @@ angular.module('app.controllers', [])
 .controller('payCtrl', function($scope) {
 
 })
-
-
-

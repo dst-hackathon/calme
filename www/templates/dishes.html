@@ -9,29 +9,42 @@
             </label>
         </form>
         <form class="list">
-            <label class="item item-input">
-                <input type="text" placeholder="who share?">
-            </label>
+          <li class="item item-checkbox">
+          <label class="checkbox">
+            <input type="checkbox">
+          </label>
+          Mr.John
+          </li>
+          <li class="item item-checkbox">
+          <label class="checkbox">
+            <input type="checkbox">
+          </label>
+          Ms. Jane
+          </li>
         </form>
         <button class="button button-stable button-block ">add/update</button>
         <a href="#/pay" class="button button-stable button-block ">next</a>
         <div>
             <p>
-                <strong>Split the rest</strong>
-                THB 100.00</p>
+              <strong>Split the rest</strong>
+              THB 100.00
+            </p>
+        </div>
 
-            <ul>
-              <li ng-repeat="dish in dishes">
-                {{dish.name}} / {{dish.price}}
-              </li>
-            </ul>
-            <hr/>
-            <ul>
-              <li ng-repeat="person in people">
-                {{person.name}}
-              </li>
-            </ul>
-
+          <div class="card" ng-repeat="dish in dishes">
+            <div class="item item-divider item-icon-right" >
+              <i class="icon ion-ios-close"></i>
+              {{dish.name}} / {{dish.price}}
+            </div>
+            <div class="item item-text-wrap">
+              <div class="list">
+                <a class="item item-icon-left" href="#" ng-repeat="person in dish.people">
+                  <i class="icon ion-person"></i>
+                  {{person.name}}
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
     </ion-content>
 </ion-view>
