@@ -1,4 +1,4 @@
-<ion-view title="shares">
+<ion-view title="shares">	
     <ion-content padding="true" class="has-header">
         <form class="list">
             <label class="item item-input" name="shareName">
@@ -9,7 +9,7 @@
         <a href="#/dishes" class="button button-stable button-block ">next</a>
         <ion-list show-delete="true">
   			<ion-item ng-repeat="item in list">
-    			{{item.name}}
+              	{{item.name}}
     			<ion-delete-button class="ion-minus-circled" ng-click="deletePeople($index)"></ion-delete-button>
 			</ion-item>
 		</ion-list>
