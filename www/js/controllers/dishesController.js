@@ -1,14 +1,11 @@
 angular.module('app.controllers')
 
-.controller('dishesCtrl', function($scope, DishesService) {
+.controller('dishesCtrl', function($scope, DishesService, SharesService) {
 
   $scope.currentDish = DishesService.new();
 
   $scope.dishes = DishesService.all();
-  $scope.people = [
-    { name: 'Ohm' },
-    { name: 'Seph' }
-  ];
+  $scope.people = SharesService.all();
 
   $scope.isSelectedPerson = function(person) {
     var currentPeople = $scope.currentDish.people;
@@ -25,20 +22,26 @@ angular.module('app.controllers')
     if (checkbox.checked) {
       currentPeople.push(person);
     } else {
-      var position = currentPeople.indexOf(person);
+      var currentIndex = currentPeople.findIndex(function(currentPerson) {
+          return currentPerson.id === person.id;
+        });
 
-      currentPeople.splice(position, 1);
+      currentPeople.splice(currentIndex, 1);
     }
   };
 
   $scope.addDish = function() {
-    DishesService.add($scope.currentDish);
+    DishesService.save($scope.currentDish);
 
     $scope.currentDish = DishesService.new();
   };
 
   $scope.removeDish = function(dish) {
     DishesService.delete(dish);
-  }
+  };
+
+  $scope.editDish = function(dish) {
+    $scope.currentDish = angular.copy(dish);
+  };
 
 });
