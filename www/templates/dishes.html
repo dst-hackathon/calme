@@ -19,6 +19,19 @@
             <p>
                 <strong>Split the rest</strong>
                 THB 100.00</p>
+
+            <ul>
+              <li ng-repeat="dish in dishes">
+                {{dish.name}} / {{dish.price}}
+              </li>
+            </ul>
+            <hr/>
+            <ul>
+              <li ng-repeat="person in people">
+                {{person.name}}
+              </li>
+            </ul>
+
         </div>
     </ion-content>
 </ion-view>
