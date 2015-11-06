@@ -6,12 +6,23 @@
             </label>
         </form>
         <button class="button button-stable button-block " ng-click="addPeople(people);">add</button>
+
+        <div class="card" ng-show="list.length > 0;">
+          <div class="item item-divider item-icon-right" >
+            <div class="icon">
+          </div>
+            People
+          </div>
+          <div class="item item-text-wrap">
+            <div class="list">
+              <a class="item item-icon-right" href="#" ng-repeat="item in list" >
+                <i class="icon ion-close" ng-click="deletePeople($index)"></i>
+                {{item.name}}
+              </a>
+            </div>
+          </div>
+        </div>
+
         <a href="#/dishes" class="button button-stable button-block ">next</a>
-        <ion-list show-delete="true">
-  			<ion-item ng-repeat="item in list">
-              	{{item.name}}
-    			<ion-delete-button class="ion-minus-circled" ng-click="deletePeople($index)"></ion-delete-button>
-			</ion-item>
-		</ion-list>
     </ion-content>
 </ion-view>
