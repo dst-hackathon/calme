@@ -22,6 +22,7 @@
           Ms. Jane
           </li>
         </form>
+
         <button class="button button-stable button-block ">add/update</button>
         <a href="#/pay" class="button button-stable button-block ">next</a>
         <div>
@@ -31,18 +32,21 @@
             </p>
         </div>
 
-          <div class="card" ng-repeat="dish in dishes">
-            <div class="item item-divider item-icon-right" >
-              <i class="icon ion-ios-close"></i>
-              {{dish.name}} / {{dish.price}}
-            </div>
-            <div class="item item-text-wrap">
-              <div class="list">
-                <a class="item item-icon-left" href="#" ng-repeat="person in dish.people">
-                  <i class="icon ion-person"></i>
-                  {{person.name}}
-                </a>
-              </div>
+        <div class="card" ng-repeat="dish in dishes">
+          <div class="item item-divider item-icon-right" >
+            <div class="icon">
+            <span class="ion-edit"></span>
+            &nbsp;
+            <span class="ion-close"></span>
+          </div>
+            {{dish.name}} / {{dish.price}}
+          </div>
+          <div class="item item-text-wrap">
+            <div class="list">
+              <a class="item item-icon-left" href="#" ng-repeat="person in dish.people">
+                <i class="icon ion-person"></i>
+                {{person.name}}
+              </a>
             </div>
           </div>
         </div>
