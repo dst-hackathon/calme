@@ -37,4 +37,8 @@ angular.module('app.controllers')
     $scope.currentDish = DishesService.new();
   };
 
+  $scope.removeDish = function(dish) {
+    DishesService.delete(dish);
+  }
+
 });
