@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('sharesCtrl', function($scope, SharesService) {
+.controller('sharesCtrl', function($scope, SharesService, ionicToast) {
 	$scope.list = SharesService.all();
 
 	$scope.addPeople = function(people) {
@@ -9,6 +9,7 @@ angular.module('app.controllers')
 			tempPeople.id = new Date().getTime();
 			SharesService.addPeople(tempPeople);
 			people.name = '';
+			ionicToast.show('a people added', 'top', false, 2500);
 		}
 	};
 
