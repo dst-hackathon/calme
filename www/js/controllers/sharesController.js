@@ -4,7 +4,7 @@ angular.module('app.controllers')
 	$scope.list = SharesService.all();
 
 	$scope.addPeople = function(people) {
-		if(people != undefined){
+		if(people != undefined && people.name != ''){
 			var tempPeople = angular.copy(people);
 			tempPeople.id = new Date().getTime();
 			SharesService.addPeople(tempPeople);
