@@ -5,7 +5,9 @@ angular.module('app.controllers')
 
 	$scope.addPeople = function(people) {
 		if(people.name){
-			SharesService.addPeople(angular.copy(people));
+			var tempPeople = angular.copy(people);
+			tempPeople.id = new Date().getTime();
+			SharesService.addPeople(tempPeople);
 			people.name = '';
 		}
 	};
