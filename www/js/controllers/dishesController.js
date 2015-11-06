@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('dishesCtrl', function($scope, DishesService, SharesService) {
+.controller('dishesCtrl', function($scope, DishesService, SharesService, BillService) {
 
   // scope definitions
   angular.extend($scope, {
@@ -8,6 +8,8 @@ angular.module('app.controllers')
     currentDish: DishesService.new(),
     dishes: DishesService.all(),
     people: SharesService.all(),
+    billTotal: BillService.getBill().totalAmount,
+
 
     isSelectedPerson: function(person) {
       var currentPeople = $scope.currentDish.people;
@@ -31,14 +33,18 @@ angular.module('app.controllers')
       DishesService.save($scope.currentDish);
 
       $scope.currentDish = DishesService.new();
+
+      calculateLeftAmount();
     },
 
     removeDish: function(dish) {
       DishesService.delete(dish);
+      calculateLeftAmount();
     },
 
     editDish: function(dish) {
       $scope.currentDish = angular.copy(dish);
+      calculateLeftAmount();
     }
 
   });
@@ -56,6 +62,16 @@ angular.module('app.controllers')
         });
 
     currentPeople.splice(currentIndex, 1);
+  }
+
+  function calculateLeftAmount() {
+    var billTotal = BillService.getBill().totalAmount;
+    var totalShare = 0;
+    $scope.dishes.forEach(function(dish){
+      totalShare += dish.price;
+    })
+
+    $scope.billTotal = billTotal - totalShare;
   }
 
 });
