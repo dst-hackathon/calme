@@ -2,14 +2,17 @@ angular.module('app.controllers')
 
 .controller('dishesCtrl', function($scope, DishesService, SharesService, BillService) {
 
+  function init() {
+    calculateLeftAmount();
+  }
+
   // scope definitions
   angular.extend($scope, {
 
     currentDish: DishesService.new(),
     dishes: DishesService.all(),
     people: SharesService.all(),
-    billTotal: BillService.getBill().totalAmount,
-
+    billTotal: 0,
 
     isSelectedPerson: function(person) {
       var currentPeople = $scope.currentDish.people;
@@ -67,11 +70,14 @@ angular.module('app.controllers')
   function calculateLeftAmount() {
     var billTotal = BillService.getBill().totalAmount;
     var totalShare = 0;
+
     $scope.dishes.forEach(function(dish){
       totalShare += dish.price;
     })
 
     $scope.billTotal = billTotal - totalShare;
   }
+
+  init();
 
 });
