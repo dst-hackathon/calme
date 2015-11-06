@@ -1,6 +1,10 @@
 <ion-view title="dishes">
     <ion-content padding="true" class="has-header">
         <form class="list">
+            <div class="item item-divider">
+              Input the dish
+            </div>
+
             <label class="item item-input" name="dishName">
                 <input type="text" placeholder="dish's name" ng-model="currentDish.name">
             </label>
@@ -10,6 +14,10 @@
         </form>
 
         <form class="list">
+          <div class="item item-divider">
+            Choose your friends
+          </div>
+
           <li class="item item-checkbox" ng-repeat="person in people">
             <label class="checkbox">
               <input type="checkbox" ng-checked="isSelectedPerson(person)" ng-click="togglePerson($event, person)">
