@@ -11,10 +11,14 @@ angular.module('app.services', [])
       return [
         {
           name: 'Fried Rice',
-          price: 50
+          price: 50,
+          people : [{
+            name : "Seph"
+          },{
+            name : "Ohm"
+          }]
         }
       ];
     }
   };
 }]);
-
