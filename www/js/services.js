@@ -4,7 +4,17 @@ angular.module('app.services', [])
 
 }])
 
-.service('BlankService', [function(){
+.service('DishesService', [function(){
+  return {
 
+    all: function() {
+      return [
+        {
+          name: 'Fried Rice',
+          price: 50
+        }
+      ];
+    }
+  };
 }]);
 
