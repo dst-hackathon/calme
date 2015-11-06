@@ -7,7 +7,7 @@ angular.module('app.controllers')
 		
 		console.log('select option: ' + OptionsService.get());
 
-		$location.url('/pay');
+		$location.url('/dishes');
 	}
 
 })
