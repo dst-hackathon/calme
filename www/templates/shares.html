@@ -1,15 +1,16 @@
-<ion-view title="shares">
+<ion-view title="shares">	
     <ion-content padding="true" class="has-header">
         <form class="list">
             <label class="item item-input" name="shareName">
-                <input type="text" placeholder="share's name" ng-model="user.name">
+                <input type="text" placeholder="share's name" ng-model="people.name">
             </label>
         </form>
-        <button class="button button-stable button-block " ng-click="addPeople(user);">add</button>
+        <button class="button button-stable button-block " ng-click="addPeople(people);">add</button>
         <a href="#/dishes" class="button button-stable button-block ">next</a>
-        <ion-list>
+        <ion-list show-delete="true">
   			<ion-item ng-repeat="item in list">
-    			{{item.name}}
+              	{{item.name}}
+    			<ion-delete-button class="ion-minus-circled" ng-click="deletePeople($index)"></ion-delete-button>
 			</ion-item>
 		</ion-list>
     </ion-content>
