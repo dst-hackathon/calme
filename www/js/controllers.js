@@ -7,6 +7,3 @@ angular.module('app.controllers', [])
 	};
 })
 
-.controller('payCtrl', function($scope) {
-
-})
