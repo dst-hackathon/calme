@@ -18,7 +18,7 @@
           </li>
         </form>
 
-        <button class="button button-stable button-block " ng-click="addDish()">add/update</button>
+        <button class="button button-stable button-block " ng-click="addDish()">{{currentDish.new ? 'add' : 'update'}}</button>
         <a href="#/options" class="button button-stable button-block ">next</a>
         <div>
             <p>
