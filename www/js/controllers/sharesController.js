@@ -1,16 +1,16 @@
-angular.module('app.controllers', [])
+angular.module('app.controllers')
 
-.controller('sharesCtrl', function($scope) {
-	$scope.list = [];
+.controller('sharesCtrl', function($scope, SharesService) {
+	$scope.list = SharesService.all();
 
 	$scope.addPeople = function(people) {
-		if(people.name) {
-			$scope.list.push(angular.copy(people));
-			people.name = '';
-		}
+
+		SharesService.addPeople(angular.copy(people));
+		people.name = '';
+
 	};
 
 	$scope.deletePeople = function(index) {
-		$scope.list.splice(index, 1);
+		SharesService.deletePeople(index);
 	};
 })
