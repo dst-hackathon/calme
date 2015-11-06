@@ -17,7 +17,7 @@
             </p>
         </div>
         <div>
-            <p>{{bill.grandTotal}} THB</p>
+            <p>{{bill.grandTotal | currency : '฿'}}</p>
         </div>
         <a href="#/shares" class="button button-stable button-block " ng-click="addBill(bill);" ng-disabled="canDisable()">next!</a>
     </ion-content>
