@@ -7,7 +7,7 @@
         </form>
         <button class="button button-stable button-block " ng-click="addPeople(people);">add</button>
 
-        <div class="card" ng-show="list.length > 0;">
+        <div class="card" ng-show="canShow()">
           <div class="item item-divider item-icon-right" >
             <div class="icon">
           </div>
@@ -23,6 +23,6 @@
           </div>
         </div>
 
-        <a href="#/dishes" class="button button-stable button-block" ng-show="list.length > 0;">next</a>
+        <a href="#/dishes" class="button button-stable button-block" ng-show="canShow()">next</a>
     </ion-content>
 </ion-view>
