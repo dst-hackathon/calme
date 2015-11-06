@@ -4,12 +4,13 @@ angular.module('app.controllers')
 	$scope.list = SharesService.all();
 
 	$scope.addPeople = function(people) {
-		if(people.name){
+		if(people != undefined && people.name != ''){
 			var tempPeople = angular.copy(people);
 			tempPeople.id = new Date().getTime();
 			SharesService.addPeople(tempPeople);
 			people.name = '';
-			ionicToast.show('a people added', 'top', false, 2500);
+		}else{
+				ionicToast.show('Please add peoples!', 'top', false, 2500);
 		}
 	};
 
