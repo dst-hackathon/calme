@@ -2,9 +2,9 @@ angular.module('app.services')
 
 .service('BillService', [function(){
   var bill = {
-    totalAmount: undefined,
-    vat: 0,
-    serviceCharge: 0
+    totalAmount: 0,
+    vat: 7,
+    serviceCharge: 10
   };
 
   return {
