@@ -4,10 +4,10 @@ angular.module('app.controllers')
 	$scope.list = SharesService.all();
 
 	$scope.addPeople = function(people) {
-
-		SharesService.addPeople(angular.copy(people));
-		people.name = '';
-
+		if(people.name){
+			SharesService.addPeople(angular.copy(people));
+			people.name = '';
+		}
 	};
 
 	$scope.deletePeople = function(index) {
