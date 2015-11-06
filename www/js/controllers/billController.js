@@ -6,4 +6,8 @@ angular.module('app.controllers')
   	$scope.addBill = function(bill) {
 		BillService.setBill(angular.copy(bill));
 	};
+
+	$scope.canDisable = function() {
+		return !$scope.bill.totalAmount || $scope.bill.totalAmount <= 0;
+	};
 });
