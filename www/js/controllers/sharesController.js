@@ -9,7 +9,8 @@ angular.module('app.controllers')
 			tempPeople.id = new Date().getTime();
 			SharesService.addPeople(tempPeople);
 			people.name = '';
-			ionicToast.show('a people added', 'top', false, 2500);
+		}else{
+				ionicToast.show('Please add peoples!', 'top', false, 2500);
 		}
 	};
 
