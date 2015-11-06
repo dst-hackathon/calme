@@ -30,7 +30,7 @@
         <div class="card" ng-repeat="dish in dishes">
           <div class="item item-divider item-icon-right" >
             <div class="icon">
-            <span class="ion-edit"></span>
+            <span class="ion-edit" ng-click="editDish(dish)"></span>
             &nbsp;
             <span class="ion-close" ng-click="removeDish(dish)"></span>
           </div>
