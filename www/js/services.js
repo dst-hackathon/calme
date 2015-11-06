@@ -23,6 +23,19 @@ angular.module('app.services', [])
   };
 }])
 
+.service('OptionsService', [function(){
+
+  return {
+    option : 'E', //default to equal - 'E'qual, 'S'hare
+    set: function(option){
+      this.option = option;
+    },
+    get: function(){
+      return this.option;
+    }
+  };
+}])
+
 .service('SharesService', [function(){
 
   return {
@@ -32,6 +45,9 @@ angular.module('app.services', [])
     },
     addPeople: function(people){
       this.people.push(people);
+    },
+    setOptions: function(option){
+      this.option = option;
     },
     all: function() {
       return this.people;
