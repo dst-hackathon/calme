@@ -4,8 +4,10 @@ angular.module('app.controllers', [])
 	$scope.list = [];
 
 	$scope.addPeople = function(people) {
-		$scope.list.push(angular.copy(people));
-		people.name = '';
+		if(people.name) {
+			$scope.list.push(angular.copy(people));
+			people.name = '';
+		}
 	};
 
 	$scope.deletePeople = function(index) {
