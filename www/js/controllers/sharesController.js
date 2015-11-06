@@ -15,4 +15,8 @@ angular.module('app.controllers')
 	$scope.deletePeople = function(index) {
 		SharesService.deletePeople(index);
 	};
+
+	$scope.canShow = function() {
+		return $scope.list.length > 0;
+	};
 })

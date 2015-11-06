@@ -1,9 +1,1 @@
-angular.module('app.controllers', [])
-
-.controller('billCtrl', function($scope) {
-
-  $scope.addBill = function(bill) {
-		$scope.bill = angular.copy(bill);
-	};
-})
-
+angular.module('app.controllers', []);

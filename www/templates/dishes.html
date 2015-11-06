@@ -2,28 +2,23 @@
     <ion-content padding="true" class="has-header">
         <form class="list">
             <label class="item item-input" name="dishName">
-                <input type="text" placeholder="dish's name">
+                <input type="text" placeholder="dish's name" ng-model="currentDish.name">
             </label>
             <label class="item item-input" name="dishPrice">
-                <input type="text" placeholder="dish's price">
+                <input type="text" placeholder="dish's price" ng-model="currentDish.price">
             </label>
         </form>
+
         <form class="list">
-          <li class="item item-checkbox">
-          <label class="checkbox">
-            <input type="checkbox">
-          </label>
-          Mr.John
-          </li>
-          <li class="item item-checkbox">
-          <label class="checkbox">
-            <input type="checkbox">
-          </label>
-          Ms. Jane
+          <li class="item item-checkbox" ng-repeat="person in people">
+            <label class="checkbox">
+              <input type="checkbox" ng-checked="isSelectedPerson(person)" ng-click="togglePerson($event, person)">
+            </label>
+            {{person.name}}
           </li>
         </form>
 
-        <button class="button button-stable button-block ">add/update</button>
+        <button class="button button-stable button-block " ng-click="addDish()">add/update</button>
         <a href="#/options" class="button button-stable button-block ">next</a>
         <div>
             <p>
@@ -37,7 +32,7 @@
             <div class="icon">
             <span class="ion-edit"></span>
             &nbsp;
-            <span class="ion-close"></span>
+            <span class="ion-close" ng-click="removeDish(dish)"></span>
           </div>
             {{dish.name}} / {{dish.price}}
           </div>

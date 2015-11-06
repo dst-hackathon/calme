@@ -9,5 +9,5 @@ angular.module('app.controllers')
 
 		$location.url('/pay');
 	}
-	
+
 })

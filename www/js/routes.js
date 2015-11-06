@@ -45,11 +45,11 @@ angular.module('app.routes', [])
       templateUrl: 'templates/options.html',
       controller: 'optionsCtrl'
     })
-        
-      
-    
-      
-        
+
+
+
+
+
     .state('pay', {
       url: '/pay',
       templateUrl: 'templates/pay.html',
