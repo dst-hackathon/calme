@@ -4,25 +4,6 @@ angular.module('app.services', [])
 
 }])
 
-.service('DishesService', [function(){
-  return {
-
-    all: function() {
-      return [
-        {
-          name: 'Fried Rice',
-          price: 50,
-          people : [{
-            name : "Seph"
-          },{
-            name : "Ohm"
-          }]
-        }
-      ];
-    }
-  };
-}])
-
 .service('OptionsService', [function(){
 
   return {
