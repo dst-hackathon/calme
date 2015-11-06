@@ -5,21 +5,25 @@ angular.module('app.services', [])
 }])
 
 .service('DishesService', [function(){
+  var dishes = [];
+
   return {
 
+    new: function() {
+      return {
+        name: "",
+        people: []
+      }
+    },
+
     all: function() {
-      return [
-        {
-          name: 'Fried Rice',
-          price: 50,
-          people : [{
-            name : "Seph"
-          },{
-            name : "Ohm"
-          }]
-        }
-      ];
+      return dishes;
+    },
+
+    add: function(dish) {
+      dishes.push(dish);
     }
+
   };
 }])
 

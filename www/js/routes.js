@@ -40,6 +40,16 @@ angular.module('app.routes', [])
     
       
         
+    .state('options', {
+      url: '/options',
+      templateUrl: 'templates/options.html',
+      controller: 'optionsCtrl'
+    })
+
+
+
+
+
     .state('pay', {
       url: '/pay',
       templateUrl: 'templates/pay.html',
