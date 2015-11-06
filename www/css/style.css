@@ -5,3 +5,6 @@
 	display: none;
 }
 
+.card .item-divider.item-icon-right .icon span {
+	font-size : 0.6em;
+}
