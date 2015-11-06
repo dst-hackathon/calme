@@ -5,7 +5,12 @@ angular.module('app.controllers', [])
 })
 
 .controller('sharesCtrl', function($scope) {
-
+	$scope.list = [];
+	
+	$scope.addPeople = function(user) {
+		$scope.list.push(angular.copy(user));
+		user.name = '';
+	};
 })
 
 .controller('dishesCtrl', function($scope, DishesService) {
