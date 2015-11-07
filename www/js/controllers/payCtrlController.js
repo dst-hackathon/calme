@@ -33,8 +33,10 @@ angular.module('app.controllers')
 	
 	function createPeople() {
 		var people = {};
+		var name;
 		for( index in  $people) {
-			people[$people[index].name] = new plopleBill($people[index].name);
+			name= $people[index].name
+			people[name] = new plopleBill(name);
 		}
 		return people;
 	}
