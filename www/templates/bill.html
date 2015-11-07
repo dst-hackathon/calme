@@ -1,11 +1,11 @@
-<ion-view title="bill">
+<ion-view title="Bill">
     <ion-content padding="true" scroll="false" class="has-header">
         <form class="list">
             <div class="list">
-                <!-- BILL BEFIRE TAX -->
+                <!-- BILL BEFORE TAX -->
                 <label class="item item-input item-stacked-label">
                     <span class="input-label">Amount</span>
-                    <input type="number" placeholder="bill before tax (e.g. 100.00)" ng-model="bill.totalAmount" ng-change="calculateGrandTotal(bill)" required />
+                    <input type="number" placeholder="bill before tax (e.g. 100.00)" ng-model="bill.totalAmount" ng-change="calculateGrandTotal(bill)" required>
                 </label>
                 <!-- VAT -->
                 <label class="item item-stacked-label">
@@ -35,6 +35,6 @@
         <div>
             <p>{{bill.grandTotal | currency : '฿'}}</p>
         </div>
-        <a href="#/shares" class="button button-energized button-block ion-chevron-right" ng-click="addBill(bill);" ng-disabled="canDisable()"> next!</a>
+        <a href="#/shares" class="button button-energized button-block ion-chevron-right" ng-click="addBill(bill, $event);">Next</a>
     </ion-content>
 </ion-view>
