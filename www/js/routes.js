@@ -7,6 +7,14 @@ angular.module('app.routes', [])
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
+
+
+
+    .state('history', {
+      url: '/history',
+      templateUrl: 'templates/history.html',
+      controller: 'historyCtrl'
+    })
     
       
         
@@ -60,6 +68,6 @@ angular.module('app.routes', [])
     ;
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/bill');
+  $urlRouterProvider.otherwise('/history');
 
 });

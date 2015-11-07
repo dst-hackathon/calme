@@ -1,9 +1,9 @@
 angular.module('app.controllers')
 
 .controller('payCtrl', function($scope, DishesService, SharesService, BillService) {
-	var $expenseData = DishesService.all();
-	console.log($expenseData);
 	//mockPeople();
+	var $expenseData = DishesService.all();
+	//var $expenseData = mockExpense();
 	var $people = SharesService.all();
 	var $totalValue = 0;
 	var $totalDetail = [];
@@ -32,6 +32,7 @@ angular.module('app.controllers')
 	function createPeople() {
 		var people = {};
 		for( index in  $people) {
+			console.log( $people[index] );
 			people[$people[index].name] = new plopleBill($people[index].name);
 		}
 		return people;
@@ -43,10 +44,11 @@ angular.module('app.controllers')
 		var name;
 		for(index in $expenseData) {
 			currentList = $expenseData[index];
-			console.log(currentList);
 			price = currentList.price/currentList.people.length;
 			for(i in currentList.people) {
 				name = currentList.people[i].name;
+				console.log(currentList);
+				console.log(currentList.people);
 				people[name].addDish(currentList.name, price);
 			}
 		}
@@ -58,13 +60,30 @@ angular.module('app.controllers')
 	}
 	
 	function mockPeople() {
-		SharesService.addPeople("Seph");
-		SharesService.addPeople("Ohm");
-		SharesService.addPeople("Sm");
+		SharesService.addPeople({name:"Seph"});
+		SharesService.addPeople({name:"Ohm"});
+		SharesService.addPeople({name:"Sam"});
 	}
 	
+	function mockExpense() {
+		return [{
+					name: "Noodle",
+					people: [{name:"Sam"},{name:"Seph"},{name:"Ohm"}],
+					price: 2000,
+					new: true},
+				{
+					name: "Fire Rice",
+					people: [{name:"Sam"},{name:"Seph"}],
+					price: 4000,
+					new: true},
+				{
+					name: "Papaya salad",
+					people: [{name:"Seph"},{name:"Ohm"}],
+					price: 5500,
+					new: true}
+				];
+	}
 });
-
 
 var plopleBill = function(name) {
 	var name = name;
@@ -81,7 +100,7 @@ var plopleBill = function(name) {
 				},
 				addDish: function(name, price) {
 					dish.push({ name:name, price: price });
-					total += parseInt(price);
+					total += price;
 				}
 			};
 }
