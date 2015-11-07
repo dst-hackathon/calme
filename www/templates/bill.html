@@ -8,22 +8,25 @@
                     <input type="number" placeholder="bill before tax (e.g. 100.00)" ng-model="bill.totalAmount" ng-change="calculateGrandTotal(bill)" required />
                 </label>
                 <!-- VAT -->
-                <label class="item item-input item-stacked-label">
+                <label class="item item-stacked-label">
                     <span class="input-label">VAT: {{bill.vat}} %</span>
-                    <div>
+                    <div class="range">
                         <input type="range" name="vat" min="0" max="10" placeholder="VAT" ng-model="bill.vat" ng-change="calculateGrandTotal(bill)">
                     </div>
                 </label>
                 <!-- SERVICE CHARGE -->
-                <label class="item item-input item-stacked-label">
+                <label class="item item-stacked-label">
                     <span class="input-label">Service Charge: {{bill.serviceCharge}} %</span>
-                    <div>
+                    <div class="range">
                        <input type="range" name="serviceCharge" min="0" max="20" placeholder="service charge (e.g. 5.00)" ng-model="bill.serviceCharge" ng-change="calculateGrandTotal(bill)">
                     </div>
                 </label>
             </div>
         </form>
-        <form class="list"></form>
+        <div>
+          <p>VAT : {{bill.vatAmount}}</p>
+          <p>Service chage : {{bill.serviceChargeAmount}}</p>
+        </div>
         <div>
             <p>
                 <strong>GRAND TOTAL</strong>
