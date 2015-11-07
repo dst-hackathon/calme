@@ -1,4 +1,4 @@
-<ion-view title="Bill">
+<ion-view title="Bill" cache-view="false">
     <ion-content padding="true" scroll="false" class="has-header">
         <form class="list">
             <div class="list">
@@ -29,12 +29,10 @@
         </div>
         <div>
             <p>
-                <strong>GRAND TOTAL</strong>
+                <strong>GRAND TOTAL : </strong>
+                {{bill.grandTotal | currency : '฿'}}
             </p>
         </div>
-        <div>
-            <p>{{bill.grandTotal | currency : '฿'}}</p>
-        </div>
-        <a href="#/shares" class="button button-energized button-block ion-chevron-right" ng-click="addBill(bill, $event);">Next</a>
+        <a href="#/shares" class="button button-energized button-block ion-chevron-right" ng-click="addBill(bill, $event);"> Next</a>
     </ion-content>
 </ion-view>
