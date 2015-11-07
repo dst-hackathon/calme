@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('payCtrl', function($scope, DishesService, SharesService, BillService, OptionsService, BillService) {
+.controller('payCtrl', function($scope, DishesService, SharesService, BillService, OptionsService, BillService, HistoryService) {
 	//mockPeople();
 	var $expenseData = DishesService.all();
 	//var $expenseData = mockExpense();
@@ -8,16 +8,29 @@ angular.module('app.controllers')
 	var $bill = BillService.getBill();
 	var $totalValue = 0;
 	var $totalDetail = [];
-	
+
 	$scope.people = getSummaryData();
-	$scope.totalValue = $totalValue; 
+	$scope.totalValue = $totalValue;
 	$scope.totalDetail = $totalDetail;
 	$scope.bill = $bill;
 	
 	$scope.view = function($event, team) {
 		viewDetail($event, team);
 	}
-	
+
+  $scope.saveHistory = function(){
+		HistoryService.addHistory(
+			{
+				name: 'defaultHistory',
+				date: new Date().toString(),
+				grandTotal: angular.copy($scope.totalValue),
+				bill: angular.copy(BillService.getBill()),
+				dishes: angular.copy(DishesService.all()),
+				people: SharesService.all()
+			}
+		);
+	};
+
 	function getSummaryData() {
 		var people = createPeople();
 		var index = 0;
@@ -30,7 +43,7 @@ angular.module('app.controllers')
 		}
 		return result;
 	}
-	
+
 	function createPeople() {
 		var people = {};
 		for( index in  $people) {
@@ -38,14 +51,14 @@ angular.module('app.controllers')
 		}
 		return people;
 	}
-	
+
 	function calculateBill(people) {
 		var currentList;
 		var price;
 		var name;
 		var vat = ($bill.vat == 0)? 1 : (1+($bill.vat/100));
 		var serviceCharge = ($bill.serviceCharge == 0)? 1: (1+($bill.serviceCharge/100));
-		
+
 		if (OptionsService.get() == "E") {
 			price = $bill.grandTotal/$people.length;
 			for(i in people) {
@@ -62,18 +75,18 @@ angular.module('app.controllers')
 			}
 		}
 	}
-	
+
 	function viewDetail($event, team) {
 		angular.element(document.getElementsByClassName("detailPanel")).addClass("hidden");
 		angular.element($event.currentTarget).next().toggleClass("hidden");
 	}
-	
+
 	function mockPeople() {
 		SharesService.addPeople({name:"Seph"});
 		SharesService.addPeople({name:"Ohm"});
 		SharesService.addPeople({name:"Sam"});
 	}
-	
+
 	function mockExpense() {
 		return [{
 					name: "Noodle",
@@ -104,7 +117,7 @@ var plopleBill = function(name) {
 				getSummary: function() {
 					if( dish.length == 0 )
 						return {name: name, payAmount: total, detail: [{name: "No record...", price: ""}]};
-					else 
+					else
 						return {name: name, payAmount: total, detail: dish};
 				},
 				addDish: function(name, price, oriPrice) {
@@ -113,4 +126,3 @@ var plopleBill = function(name) {
 				}
 			};
 }
-
