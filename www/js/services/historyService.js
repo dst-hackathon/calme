@@ -4,6 +4,7 @@ angular.module('app.services')
          ['$localStorage', 'BillService', 'SharesService', 'DishesService',
   function($localStorage, BillService, SharesService, DishesService){
 
+  var historyEntries = $localStorage.get('calme.history.entries') || [];
   var formatDate = function(date){
     return (date.getMonth()+1).toString() + '/'
       + date.getDate().toString() + '/'
@@ -26,13 +27,15 @@ angular.module('app.services')
     },
 
     getHistory: function(){
-      return $localStorage.get('calme.history.entries') || [];
+      return historyEntries;
     },
 
     addHistory: function(historyToAdd){
       var historyEntries = this.getHistory();
 
-      $localStorage.set('calme.history.entries', historyEntries.concat([ historyToAdd ]));
+      historyEntries.push(historyToAdd);
+
+      $localStorage.set('calme.history.entries', historyEntries);
     },
 
     loadHistory: function(history) {
