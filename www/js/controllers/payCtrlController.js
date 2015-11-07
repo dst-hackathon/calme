@@ -13,6 +13,8 @@ angular.module('app.controllers')
 	$scope.totalValue = $totalValue;
 	$scope.totalDetail = $totalDetail;
 	$scope.bill = $bill;
+	$scope.history = {};
+	$scope.history.name = '';
 
 	$scope.view = function($event, team) {
 		viewDetail($event, team);
@@ -28,16 +30,16 @@ angular.module('app.controllers')
 		};
 
 		var histObj = {
-			name: angular.copy(history.name),
+			name: angular.copy($scope.history.name),
 			date: getDate(),
 			grandTotal: angular.copy($scope.totalValue),
 			bill: angular.copy(BillService.getBill()),
 			dishes: angular.copy(DishesService.all()),
 			people: angular.copy(SharesService.all())
 		};
-
+		console.log(histObj);
 		HistoryService.addHistory(histObj);
-		history.name = "";
+		$scope.history.name = "";
 		ionicToast.show('Record saved.', 'top', false, 2500);
 	};
 
