@@ -4,23 +4,29 @@
    			<div ng-repeat="x in people">
 				<div class="item item-divider" ng-click="view($event, team);">
 					<h2>{{x.name}}</h2>
-					<strong style="float: right;">{{x.payAmount}}</strong>
+					<strong style="float: right;">{{x.payAmount | currency}}</strong>
 				</div>
 				<div class="item item-text-wrap hidden detailPanel">
-					{{x.detail}}
+					<div ng-repeat="y in x.detail">
+						{{y.name}}
+						<div style="float: right;">{{y.price | currency}}</div>
+					</div>
 				</div>
 			</div>
 			<div>
 				<div class="item item-divider">
 					<h2>Total</h2>
-					<strong style="float: right;"></strong>
+					<strong style="float: right;">{{totalValue | currency}}</strong>
 				</div>
 				<div class="item item-text-wrap">
-					{{x.detail}}
+					<div>Sub total</div><div class="clear"></div>
+					<div>Tax</div><div class="clear"></div>
+					<div>Tip</div><div class="clear"></div>
+					<div>Grand Total</div><div class="clear"></div>
 				</div>
 			</div>
        </div>
         <ion-list></ion-list>
-        <a href="#/bill" class="button button-stable button-block  icon ion-android-sync">start all over</a>
+        <a href="#/bill" class="button button-assertive button-full  icon ion-android-sync">start all over</a>
     </ion-content>
 </ion-view>

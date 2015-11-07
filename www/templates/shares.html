@@ -5,7 +5,7 @@
                 <input type="text" placeholder="share's name" ng-model="people.name" maxLength="50">
             </label>
         </form>
-        <button class="button button-stable button-block " ng-click="addPeople(people);">add</button>
+        <button class="button button-balanced button-block ion-plus-circled" ng-click="addPeople(people);"> add</button>
 
         <div class="card" ng-show="canShow()">
           <div class="item item-divider item-icon-right" >
@@ -23,6 +23,6 @@
           </div>
         </div>
 
-        <a href="#/options" class="button button-stable button-block" ng-show="canShow()">next</a>
+        <a href="#/options" class="button button-energized button-block ion-chevron-right" ng-show="canShow()"> next</a>
     </ion-content>
 </ion-view>

@@ -2,12 +2,12 @@
     <ion-content padding="true" scroll="false" class="has-header">
         <form class="list">
             <label class="item item-input" name="billBeforeTax">
-            <input type="number" placeholder="bill before tax (e.g. 100.00)" ng-model="bill.totalAmount" required>
+            <input type="number" placeholder="bill before tax (e.g. 100.00)" ng-model="bill.totalAmount" ng-change="calculateGrandTotal(bill)" required>
             </label>
             <label class="item item-input" name="vat"> VAT: {{bill.vat}} % </label>
-            <input type="range" name="vat" min="0" max="10" placeholder="VAT" ng-model="bill.vat">
+            <input type="range" name="vat" min="0" max="10" placeholder="VAT" ng-model="bill.vat" ng-change="calculateGrandTotal(bill)">
             <label class="item item-input" name="serviceCharge"> Service Charge: {{bill.serviceCharge}} % </label>
-            <input type="range" name="serviceCharge" min="0" max="20" placeholder="service charge (e.g. 5.00)" ng-model="bill.serviceCharge">
+            <input type="range" name="serviceCharge" min="0" max="20" placeholder="service charge (e.g. 5.00)" ng-model="bill.serviceCharge" ng-change="calculateGrandTotal(bill)">
 
         </form>
         <form class="list"></form>
@@ -17,8 +17,8 @@
             </p>
         </div>
         <div>
-            <p>THB 115.00</p>
+            <p>{{bill.grandTotal | currency : '฿'}}</p>
         </div>
-        <a href="#/shares" class="button button-stable button-block " ng-click="addBill(bill);">next!</a>
+        <a href="#/shares" class="button button-energized button-block ion-chevron-right" ng-click="addBill(bill);" ng-disabled="canDisable()"> next!</a>
     </ion-content>
 </ion-view>
