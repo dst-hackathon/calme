@@ -6,20 +6,17 @@
                 <div>CalMe</div>
             </a>
         </div>
-        
+
 
         <ion-scroll direction="y">
-            <div class="card" ng-repeat="record in historyRecords">
-              <div class="item item-divider">
-                <div class="icon">
+            <div class="list card" ng-repeat="record in historyRecords">
+              <div class="item item-avatar">
+                <img src="img/plate.png">
+                <h2>{{record.date}}</h2>
+                <p>{{record.name}}</p>
               </div>
-                {{record.date}}
-              </div>
-              <div class="item item-text-wrap">
-                <div class="list">
-                  <span style="float:left;">{{record.name}}</span>
-                  <span style="float:right;">{{record.grandTotal}}</span>
-                </div>
+              <div class="item item-body">
+                <p>{{record.grandTotal}}</p>
               </div>
             </div>            
         </ion-scroll>

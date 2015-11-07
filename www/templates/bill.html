@@ -10,8 +10,10 @@
                 <!-- VAT -->
                 <label class="item item-stacked-label">
                     <span class="input-label">VAT: {{bill.vat}} %</span>
-                    <div class="range">
+                    <div class="item range range-positive">
+                        <!-- <i class="icon ion-minus-round" /> -->
                         <input type="range" name="vat" min="0" max="10" placeholder="VAT" ng-model="bill.vat" ng-change="calculateGrandTotal(bill)">
+                        <!-- <i class="icon ion-plus-round" /> -->
                     </div>
                 </label>
                 <!-- SERVICE CHARGE -->
