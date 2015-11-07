@@ -1,5 +1,11 @@
 <ion-view title="Dishes" cache-view="false">
     <ion-content padding="true" class="has-header">
+        <div>
+            <p>
+              <strong>Total Amount Left: </strong>
+              <span class="totalAmount">{{billTotal | currency : '฿'}}</span>
+            </p>
+        </div>
         <form class="list">
             <div class="item item-divider">
               Enter a dish
@@ -7,12 +13,12 @@
 
             <label class="item item-input" name="dishName">
                 <i class="icon ion-pizza placeholder-icon"></i>
-                <input type="text" placeholder=" dish's name" ng-model="currentDish.name"></input>
+                <input type="text" placeholder=" Name" ng-model="currentDish.name"></input>
             </label>
 
             <label class="item item-input" name="dishPrice">
                 <i class="icon ion-calculator placeholder-icon"></i>
-                <input type="number" class="assertive" placeholder=" price e.g. 100.00" ng-model="currentDish.price"></input>
+                <input type="number" class="assertive" placeholder=" Price e.g. 100.00" ng-model="currentDish.price"></input>
             </label>
         </form>
 
@@ -30,13 +36,6 @@
         </form>
 
         <button class="button button-balanced button-block ion-plus-circled" ng-click="addDish()"> {{currentDish.new ? 'add' : 'update'}}</button>
-        <a href="#" class="button button-energized button-block ion-chevron-right" ng-click="validateNext()"> next</a>
-        <div>
-            <p>
-              <strong>Total Amount Left</strong>
-              <span class="totalAmount">{{billTotal | currency : '฿'}}</span>
-            </p>
-        </div>
 
         <div class="card" ng-repeat="dish in dishes">
           <div class="item item-divider item-icon-right" >
@@ -56,5 +55,6 @@
             </div>
           </div>
         </div>
+        <a href="#" class="button button-energized button-block ion-chevron-right" ng-click="validateNext()"> Next</a>
     </ion-content>
 </ion-view>
