@@ -6,16 +6,37 @@ angular.module('app.controllers')
 	$scope.addPeople = function(people) {
 		if(people != undefined && people.name != ''){
 			var tempPeople = angular.copy(people);
-			tempPeople.id = new Date().getTime();
-			SharesService.addPeople(tempPeople);
-			people.name = '';
+			var isValidPeople = true;
+
+			for(var i=0; i < $scope.list.length; i++) {
+				var existingPeople = $scope.list[i];
+				if(tempPeople.name == existingPeople.name) {
+					ionicToast.show('Duplicated with existing people', 'top', false, 2500);
+					isValidPeople = false;
+					break;
+				}
+    		}
+
+    		if(isValidPeople) {
+				tempPeople.id = new Date().getTime();
+				SharesService.addPeople(tempPeople);
+				people.name = '';
+			}
 		}else{
-				ionicToast.show('Please add peoples!', 'top', false, 2500);
+			ionicToast.show('Please add peoples!', 'top', false, 2500);
 		}
 	};
 
 	$scope.deletePeople = function(index) {
 		SharesService.deletePeople(index);
+	};
+
+	$scope.validatePeople = function(event) {
+		if($scope.list.length <= 1) {
+			ionicToast.show('Please add at least two peoples', 'top', false, 2500);
+			event.stopPropagation();
+			event.preventDefault();
+		}
 	};
 
 	$scope.canShow = function() {
