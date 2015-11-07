@@ -31,7 +31,7 @@ angular.module('app.controllers')
       },
 
       addDish: function() {
-        var validation = DishesService.validate($scope.currentDish);
+        var validation = DishesService.save($scope.currentDish);
 
         if (!validation.valid) {
           return showToast(validation.messages[0]);
