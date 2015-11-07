@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('payCtrl', function($scope, DishesService, SharesService, BillService, OptionsService, BillService, HistoryService, ionicToast) {
+.controller('payCtrl', function($scope, DishesService, SharesService, BillService, OptionsService, BillService, HistoryService, ionicToast, $ionicModal) {
 	//mockPeople();
 	var $expenseData = DishesService.all();
 	//var $expenseData = mockExpense();
@@ -8,7 +8,7 @@ angular.module('app.controllers')
 	var $bill = BillService.getBill();
 	var $totalValue = 0;
 	var $totalDetail = [];
-
+	
 	$scope.people = getSummaryData();
 	$scope.totalValue = $totalValue;
 	$scope.totalDetail = $totalDetail;
@@ -25,7 +25,7 @@ angular.module('app.controllers')
 		SharesService.clear();
 		DishesService.clear();
 	}
-
+	
 	$scope.saveHistory = function(history){
 		var getDate = function(){
 			var date = new Date();
