@@ -1,75 +1,45 @@
-<ion-view title="Pay">
+<ion-view title="pay">
     <ion-content padding="true" class="has-header">
     	<div class="list card">
    			<div ng-repeat="x in people">
 				<div class="item item-divider" ng-click="view($event, team);">
 					<h2>{{x.name}}</h2>
-					<strong style="float: right;">{{x.payAmount | currency : '฿'}}</strong>
+					<strong style="float: right;">{{x.payAmount | currency}}</strong>
 				</div>
 
 				<div class="item item-text-wrap detailPanel" ng-if="$index == 0">
 					<div ng-repeat="y in x.detail">
 						{{y.name}}
-						<div style="float: right;" ng-if="y.price > 0">
-							{{y.price | currency : '฿'}} ({{y.oriPrice | currency : '฿'}} <span style="color: green;">+ {{(y.price - y.oriPrice) | currency : '฿'}}</span>)
-						</div>
-						<div style="float: right;" ng-if="y.price == 0">
-							{{y.price | currency : '฿'}}
-						</div>
+						<div style="float: right;">{{y.price | currency}}</div>
 					</div>
 				</div>
 				<div class="item item-text-wrap hidden detailPanel" ng-if="$index != 0">
 					<div ng-repeat="y in x.detail">
 						{{y.name}}
-						<div style="float: right;" ng-if="y.price > 0">
-							{{y.price | currency : '฿'}} ({{y.oriPrice | currency : '฿'}} <span style="color: green;">+ {{(y.price - y.oriPrice) | currency : '฿'}}</span>)
-						</div>
-						<div style="float: right;" ng-if="y.price == 0">
-							{{y.price | currency : '฿'}}
-						</div>
+						<div style="float: right;">{{y.price | currency}}</div>
 					</div>
 				</div>
 			</div>
 			<div>
 				<div class="item item-divider">
-					<h2 style="text-decoration: underline;">Total</h2>
-					<strong style="float: right;text-decoration: underline;">{{totalValue | currency : '฿'}}</strong>
+					<h2>Total</h2>
+					<strong style="float: right;">{{totalValue | currency}}</strong>
 				</div>
 				<div class="item item-text-wrap">
-					<div>
-						<div >Sub total
-							<span style="float: right;">{{bill.totalAmount | currency : '฿'}}</span>
-						</div>
-						<div class="clear"></div>
-					</div>
-					<div>
-						<div >Tax ({{bill.vat}} %)
-							<span style="float: right;">{{bill.vatAmount | currency : '฿'}}</span>
-						</div>
-						<div class="clear"></div>
-					</div>
-					<div>
-						<div>Tip ({{bill.serviceCharge}} %)
-							<span style="float: right;">{{bill.serviceChargeAmount | currency : '฿'}}</span>
-						</div>
-						<div class="clear"></div>
-					</div>
-					<div>
-						<div>Grand Total
-							<span style="float: right;">{{bill.grandTotal | currency : '฿'}}</span>
-						</div>
-						<div class="clear"></div>
-					</div>
+					<div>Sub total</div><div class="clear"></div>
+					<div>Tax</div><div class="clear"></div>
+					<div>Tip</div><div class="clear"></div>
+					<div>Grand Total</div><div class="clear"></div>
 				</div>
 			</div>
        </div>
         <a href="#/history" class="button button-assertive button-full  icon ion-android-sync">start all over</a>
        <form class="list">
            <label class="item item-input" name="historyName">
-               <input type="text" placeholder="History's name" ng-model="history.name" maxLength="50" ng-click="clear();">
+               <input type="text" placeholder="History's name" ng-model="history.name" maxLength="50">
            </label>
        </form>
-       <button class="button button-balanced button-block ion-arrow-down-a" ng-click="saveHistory(history.name);"> Save</button>
+       <button class="button button-balanced button-block ion-arrow-down-a" ng-click="saveHistory();"> Save</button>
 
     </ion-content>
 </ion-view>
