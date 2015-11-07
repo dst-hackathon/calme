@@ -87,9 +87,13 @@ angular.module('app.services')
         messages: messages
       };
     },
-    
+
     clear: function() {
     	dishes = [];
+    },
+
+    setDishes: function(values) {
+      dishes = values;
     }
 
   };
