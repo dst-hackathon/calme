@@ -4,8 +4,6 @@ angular.module('app.controllers')
 
 	$scope.options = function(selectedOption){
 		OptionsService.set(selectedOption);
-
-		console.log('select option: ' + OptionsService.get());
 	}
 
 })

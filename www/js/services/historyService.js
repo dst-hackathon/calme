@@ -3,7 +3,8 @@ angular.module('app.services')
 .service('HistoryService', [function(){
   var history = [];
 
-  var formatDate = function(date){
+  var getDate = function(){
+    var date = new Date();
     return (date.getMonth()+1).toString() + '/'
       + date.getDate().toString() + '/'
       + date.getFullYear().toString() + '  '
@@ -15,8 +16,8 @@ angular.module('app.services')
     addDefaultHistory: function(){
       var dHistory = {
         name: 'defaultHistory',
-        date: formatDate(new Date()),
-        grandTotal: 100.00,
+        date: getDate(),
+        grandTotal: 100.00
         bill: null,
         dishes: null,
         people: null
@@ -29,6 +30,9 @@ angular.module('app.services')
     },
     addHistory: function(historyToAdd){
       history.push(historyToAdd);
+    },
+    getHistoryByIndex: function(index){
+      return history[index];
     }
 
   };

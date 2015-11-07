@@ -86,6 +86,14 @@ angular.module('app.services')
         valid: messages.length === 0,
         messages: messages
       };
+    },
+
+    clear: function() {
+    	dishes = [];
+    },
+
+    setDishes: function(values) {
+      dishes = values;
     }
 
   };

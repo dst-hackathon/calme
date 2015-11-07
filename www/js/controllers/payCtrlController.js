@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('payCtrl', function($scope, DishesService, SharesService, BillService, OptionsService, BillService, HistoryService) {
+.controller('payCtrl', function($scope, DishesService, SharesService, BillService, OptionsService, BillService, HistoryService, ionicToast) {
 	//mockPeople();
 	var $expenseData = DishesService.all();
 	//var $expenseData = mockExpense();
@@ -13,22 +13,41 @@ angular.module('app.controllers')
 	$scope.totalValue = $totalValue;
 	$scope.totalDetail = $totalDetail;
 	$scope.bill = $bill;
-	
+	$scope.history = {};
+	$scope.history.name = '';
+
 	$scope.view = function($event, team) {
 		viewDetail($event, team);
 	}
 
-  $scope.saveHistory = function(){
-		HistoryService.addHistory(
-			{
-				name: 'defaultHistory',
-				date: new Date().toString(),
-				grandTotal: angular.copy($scope.totalValue),
-				bill: angular.copy(BillService.getBill()),
-				dishes: angular.copy(DishesService.all()),
-				people: SharesService.all()
-			}
-		);
+	
+	$scope.clear = function($event, team) {
+		BillService.resetBill();
+		SharesService.clear();
+		DishesService.clear();
+	}
+
+  $scope.saveHistory = function(history){
+		var getDate = function(){
+			var date = new Date();
+			return (date.getMonth()+1).toString() + '/'
+				+ date.getDate().toString() + '/'
+				+ date.getFullYear().toString() + '  '
+				+ date.toLocaleTimeString();
+		};
+
+		var histObj = {
+			name: angular.copy($scope.history.name),
+			date: getDate(),
+			grandTotal: angular.copy($scope.totalValue),
+			bill: angular.copy(BillService.getBill()),
+			dishes: angular.copy(DishesService.all()),
+			people: angular.copy(SharesService.all())
+		};
+
+		HistoryService.addHistory(histObj);
+		$scope.history.name = "";
+		ionicToast.show('Record saved.', 'top', false, 2500);
 	};
 
 	function getSummaryData() {
@@ -46,10 +65,8 @@ angular.module('app.controllers')
 
 	function createPeople() {
 		var people = {};
-		var name;
 		for( index in  $people) {
-			name= $people[index].name
-			people[name] = new plopleBill(name);
+			people[$people[index].name] = new plopleBill($people[index].name);
 		}
 		return people;
 	}

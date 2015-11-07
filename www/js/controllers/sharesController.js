@@ -42,4 +42,8 @@ angular.module('app.controllers')
 	$scope.canShow = function() {
 		return $scope.list.length > 0;
 	};
+
+	$scope.shouldShowDelete = false;
+ 	$scope.shouldShowReorder = false;
+ 	$scope.listCanSwipe = true
 })

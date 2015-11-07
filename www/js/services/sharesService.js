@@ -15,6 +15,12 @@ angular.module('app.services')
     },
     all: function() {
       return this.people;
+    },
+    clear: function() {
+    	this.people = [];
+    },
+    setPeople: function(people) {
+      this.people = people;
     }
   };
 }]);

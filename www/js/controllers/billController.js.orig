@@ -23,11 +23,15 @@ angular.module('app.controllers')
     $scope.bill = BillService.calculateGrandTotal();
   };
 
+<<<<<<< HEAD
   $scope.calculateTotalAmount = function(bill) {
     BillService.setBill(angular.copy(bill));
     $scope.bill = BillService.calculateTotalAmount();
   };
+
   $scope.canShowAmount = function(amountType) {
     return $scope.bill.amountType == amountType;
   };
+=======
+>>>>>>> 05ee1d6c2b7e0ef9333d19def2cd751b180b39be
 });

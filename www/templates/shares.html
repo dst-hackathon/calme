@@ -1,7 +1,8 @@
-<ion-view title="shares">	
+<ion-view title="shares" cache-view="false">
     <ion-content padding="true" class="has-header">
         <form class="list">
-            <label class="item item-input" name="shareName">
+            <label class="item item-input-inset" name="shareName">
+                <img ng-src="img/people.png">
                 <input type="text" placeholder="share's name" ng-model="people.name" maxLength="50">
             </label>
         </form>
@@ -14,12 +15,15 @@
             People
           </div>
           <div class="item item-text-wrap">
-            <div class="list">
-              <a class="item item-icon-right" href="#" ng-repeat="item in list" >
-                <i class="icon ion-close" ng-click="deletePeople($index)"></i>
-                {{item.name}}
-              </a>
-            </div>
+            <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
+              <ion-item ng-repeat="item in list">
+                <span>{{item.name}}</span>
+                <ion-option-button class="button-assertive"
+                                   ng-click="deletePeople($index)">
+                  delete
+                </ion-option-button>
+              </ion-item>
+            </ion-list>
           </div>
         </div>
 

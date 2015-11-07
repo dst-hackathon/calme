@@ -1,21 +1,21 @@
-<ion-view title="dishes">
+<ion-view title="Dishes" cache-view="false">
     <ion-content padding="true" class="has-header">
         <form class="list">
             <div class="item item-divider">
-              Input the dish
+              Enter a dish
             </div>
 
-            <label class="item item-input" name="dishName">
-                <input type="text" placeholder="dish's name" ng-model="currentDish.name">
+            <label class="item item-input ion-pizza" name="dishName">
+                <input type="text" placeholder=" dish's name" ng-model="currentDish.name">
             </label>
-            <label class="item item-input" name="dishPrice">
-                <input type="number" placeholder="dish's price" ng-model="currentDish.price">
+            <label class="item item-input ion-calculator" name="dishPrice">
+                <input type="number" class="assertive" placeholder=" price e.g. 100.00" ng-model="currentDish.price">
             </label>
         </form>
 
         <form class="list">
           <div class="item item-divider">
-            Choose your friends
+            Share this dish with
           </div>
 
           <li class="item item-checkbox" ng-repeat="person in people">
@@ -31,7 +31,7 @@
         <div>
             <p>
               <strong>Total Amount Left</strong>
-              {{billTotal | currency : '฿'}}
+              <span class="totalAmount">{{billTotal | currency : '฿'}}</span>
             </p>
         </div>
 
