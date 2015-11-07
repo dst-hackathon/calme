@@ -57,8 +57,10 @@ angular.module('app.controllers')
       validateNext : function() {
         if( $scope.billTotal == 0  ) {
           $state.go("pay");
-        } else {
-          showToast('You have not split all dishes. Please make it until amount goes zero');
+        } else if ( $scope.billTotal < 0 ) {
+          showToast('You have split overprice dishes. Please review your items.');
+        }else {
+          showToast('You have not split all dishes. Please make it until amount goes zero.');
         }
       }
     });
@@ -89,7 +91,11 @@ angular.module('app.controllers')
       totalShare += Number(dish.price);
     })
 
-    $scope.billTotal = billTotal - totalShare;
+    var totalAmountLeft = billTotal - totalShare;
+
+    $scope.billTotal = totalAmountLeft;
+
+    angular.element(document.getElementsByClassName("totalAmount")).toggleClass("assertive", (totalAmountLeft < 0))
   }
 
   function showToast(message) {

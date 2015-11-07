@@ -1,4 +1,4 @@
-<ion-view title="Dishes">
+<ion-view title="Dishes" cache-view="false">
     <ion-content padding="true" class="has-header">
         <form class="list">
             <div class="item item-divider">
@@ -31,7 +31,7 @@
         <div>
             <p>
               <strong>Total Amount Left</strong>
-              {{billTotal | currency : '฿'}}
+              <span class="totalAmount">{{billTotal | currency : '฿'}}</span>
             </p>
         </div>
 
