@@ -34,6 +34,16 @@ angular.module('app.services')
         bill.grandTotal = 0;
       }
       return bill;
+    },
+
+    resetBill: function(){
+      bill = {
+        totalAmount: undefined,
+        vat: 7,
+        vatAmount: 0,
+        serviceCharge: 10,
+        serviceChargeAmount: 0
+      };
     }
 
   };
