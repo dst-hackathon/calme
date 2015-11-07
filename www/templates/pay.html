@@ -6,7 +6,7 @@
 					<h2>{{x.name}}</h2>
 					<strong style="float: right;">{{x.payAmount | currency}}</strong>
 				</div>
-				
+
 				<div class="item item-text-wrap detailPanel" ng-if="$index == 0">
 					<div ng-repeat="y in x.detail">
 						{{y.name}}
@@ -64,7 +64,13 @@
 				</div>
 			</div>
        </div>
-        <ion-list></ion-list>
         <a href="#/history" class="button button-assertive button-full  icon ion-android-sync">start all over</a>
+       <form class="list">
+           <label class="item item-input" name="historyName">
+               <input type="text" placeholder="History's name" ng-model="history.name" maxLength="50">
+           </label>
+       </form>
+       <button class="button button-balanced button-block ion-arrow-down-a" ng-click="saveHistory(history.name);"> Save</button>
+
     </ion-content>
 </ion-view>

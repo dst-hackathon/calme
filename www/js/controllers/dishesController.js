@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('dishesCtrl', function($scope, $state, DishesService, SharesService, BillService, ionicToast) {
+.controller('dishesCtrl', function($scope, $state, DishesService, SharesService, BillService, ionicToast, $ionicScrollDelegate) {
 
   function init() {
 
@@ -50,6 +50,8 @@ angular.module('app.controllers')
 
       editDish: function(dish) {
         $scope.currentDish = angular.copy(dish);
+
+        $ionicScrollDelegate.scrollTop();
       },
 
       validateNext : function() {
