@@ -3,63 +3,66 @@ angular.module('app.controllers')
 .controller('dishesCtrl', function($scope, $state, DishesService, SharesService, BillService, ionicToast) {
 
   function init() {
+
+    // scope definitions
+    angular.extend($scope, {
+
+      currentDish: DishesService.new(),
+      dishes: DishesService.all(),
+      people: SharesService.all(),
+      billTotal: 0,
+
+      isSelectedPerson: function(person) {
+        var currentPeople = $scope.currentDish.people;
+
+        return currentPeople.some(function(currentPerson) {
+          return person.name === currentPerson.name;
+        });
+      },
+
+      togglePerson: function(event, person) {
+        var checkbox = event.target;
+
+        if (checkbox.checked) {
+          addPersonToCurrentDish(person);
+        } else {
+          removePersonFromCurrentDish(person);
+        }
+      },
+
+      addDish: function() {
+        var validation = DishesService.save($scope.currentDish);
+
+        if (!validation.valid) {
+          return showToast(validation.messages[0]);
+        }
+
+        $scope.currentDish = DishesService.new();
+
+        calculateLeftAmount();
+      },
+
+      removeDish: function(dish) {
+        DishesService.delete(dish);
+        $scope.currentDish = DishesService.new();
+        calculateLeftAmount();
+      },
+
+      editDish: function(dish) {
+        $scope.currentDish = angular.copy(dish);
+      },
+
+      validateNext : function() {
+        if( $scope.billTotal == 0  ) {
+          $state.go("pay");
+        } else {
+          showToast('You have not split all dishes. Please make it until amount goes zero');
+        }
+      }
+    });
+
     calculateLeftAmount();
   }
-
-  // scope definitions
-  angular.extend($scope, {
-
-    currentDish: DishesService.new(),
-    dishes: DishesService.all(),
-    people: SharesService.all(),
-    billTotal: 0,
-
-    isSelectedPerson: function(person) {
-      var currentPeople = $scope.currentDish.people;
-
-      return currentPeople.some(function(currentPerson) {
-        return person.name === currentPerson.name;
-      });
-    },
-
-    togglePerson: function(event, person) {
-      var checkbox = event.target;
-
-      if (checkbox.checked) {
-        addPersonToCurrentDish(person);
-      } else {
-        removePersonFromCurrentDish(person);
-      }
-    },
-
-    addDish: function() {
-      DishesService.save($scope.currentDish);
-
-      $scope.currentDish = DishesService.new();
-
-      calculateLeftAmount();
-    },
-
-    removeDish: function(dish) {
-      DishesService.delete(dish);
-      $scope.currentDish = DishesService.new();
-      calculateLeftAmount();
-    },
-
-    editDish: function(dish) {
-      $scope.currentDish = angular.copy(dish);
-      calculateLeftAmount();
-    },
-
-    validateNext : function() {
-      if( $scope.billTotal == 0  ) {
-        $state.go("pay");
-      } else {
-        ionicToast.show('You have not split all dishes. Please make it until amount goes zero', 'top', false, 2000);
-      }
-    }
-
-  });
 
   function addPersonToCurrentDish(person) {
     var currentPeople = $scope.currentDish.people;
@@ -85,6 +88,10 @@ angular.module('app.controllers')
     })
 
     $scope.billTotal = billTotal - totalShare;
+  }
+
+  function showToast(message) {
+    ionicToast.show(message, 'top', false, 2500);
   }
 
   init();

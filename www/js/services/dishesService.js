@@ -27,6 +27,12 @@ angular.module('app.services')
     },
 
     save: function(dish) {
+
+      var validation = this.validate(dish);
+      if (!validation.valid) {
+        return validation;
+      }
+
       if (dish.new) {
         dish.new = false;
 
@@ -36,6 +42,8 @@ angular.module('app.services')
 
         angular.copy(dish, currentDish);
       }
+
+      return validation;
 
     },
 
@@ -53,6 +61,31 @@ angular.module('app.services')
       if (index >= 0) {
         return dishes[index];
       }
+    },
+
+    validate: function(dish) {
+      var messages = [];
+
+      if (!dish.name || !dish.name.trim()) {
+        messages.push('Dish name is required');
+      }
+
+      if (dish.price === null || dish.price === undefined) {
+        messages.push('Dish price is required');
+      }
+
+      if (dish.price <= 0) {
+        messages.push('Dish price must be positive number');
+      }
+
+      if (dish.people.length === 0) {
+        messages.push('At least 1 person need to be assigned to this dish');
+      }
+
+      return {
+        valid: messages.length === 0,
+        messages: messages
+      };
     }
 
   };
