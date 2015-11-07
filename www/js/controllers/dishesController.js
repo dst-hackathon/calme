@@ -39,6 +39,7 @@ angular.module('app.controllers')
 
     removeDish: function(dish) {
       DishesService.delete(dish);
+      $scope.currentDish = DishesService.new();
       calculateLeftAmount();
     },
 
