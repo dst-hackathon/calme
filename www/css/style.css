@@ -22,3 +22,15 @@
 .centered{
     margin: 0 auto;
 }
+
+.item.item-divider.custom {
+	border-top: 1px solid rgb(221, 221, 221);
+}
+
+.custom.total {
+	border-color: black;
+	font-weight: bold;
+	color: white;
+	background-color: black;
+	
+}

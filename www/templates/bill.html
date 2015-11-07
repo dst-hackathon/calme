@@ -1,38 +1,52 @@
 <ion-view title="Bill" cache-view="false">
-    <ion-content padding="true" scroll="false" class="has-header">
-        <form class="card">
-                <!-- BILL BEFORE TAX -->
-                <label class="item item-input item-stacked-label">
-                    <span class="input-label ion-calculator">
-                        Amount
-                    </span>
-                    <input type="number" placeholder="bill before tax (e.g. 100.00)" ng-model="bill.totalAmount" ng-change="calculateGrandTotal(bill)" required>
-                </label>
-                <!-- VAT -->
-                <label class="item item-stacked-label">
-                    <span class="input-label">VAT: {{bill.vat}} %</span>
-                    <div class="range range-assertive">
-                        <input type="range" name="vat" min="0" max="10" placeholder="vat" ng-model="bill.vat" ng-change="calculateGrandTotal(bill)">
-                    </div>
-                </label>
-                <!-- SERVICE CHARGE -->
-                <label class="item item-stacked-label">
-                    <span class="input-label">Service Charge: {{bill.serviceCharge}} %</span>
-                    <div class="range range-assertive">
-                       <input type="range" name="serviceCharge" min="0" max="20" placeholder="serviceCharge" ng-model="bill.serviceCharge" ng-change="calculateGrandTotal(bill)">
-                    </div>
-                </label>
-        </form>
-        <div>
-          <p>VAT : {{bill.vatAmount | currency : '฿'}}</p>
-          <p>Service charge : {{bill.serviceChargeAmount | currency : '฿'}}</p>
+<ion-content padding="true" scroll="false" class="has-header">
+<form class="card">
+    <label class="item item-input item-select">
+        <div class="input-label">
+            Amount Type
         </div>
-        <div>
-            <p>
-                <strong>GRAND TOTAL : </strong>
-                {{bill.grandTotal | currency : '฿'}}
-            </p>
+        <select ng-model="bill.amountType">
+            <option ng-selected="true" value="0">Bill Before Tax</option>
+            <option value="1">Grand Total</option>
+        </select>
+    </label>
+    <!-- BILL BEFORE TAX -->
+    <label class="item item-input item-stacked-label">
+        <span class="input-label ion-calculator">
+            Amount
+        </span>
+        <input type="number" placeholder="Enter bill before tax (e.g. 100.00)" ng-model="bill.totalAmount" ng-change="calculateGrandTotal(bill)" required ng-show="canShowAmount(0)">
+        <input type="number" placeholder="Enter grand total (e.g. 100.00)" ng-model="bill.grandTotal" ng-change="calculateTotalAmount(bill)" required ng-show="canShowAmount(1)">
+    </label>
+    <!-- VAT -->
+    <label class="item item-stacked-label">
+        <span class="input-label">VAT: {{bill.vat}} %</span>
+        <div class="range range-assertive">
+            <input type="range" name="vat" min="0" max="10" placeholder="vat" ng-model="bill.vat" ng-change="calculateGrandTotal(bill)">
         </div>
-        <a href="#/shares" class="button button-energized button-block ion-chevron-right" ng-click="addBill(bill, $event);"> Next</a>
-    </ion-content>
+    </label>
+    <!-- SERVICE CHARGE -->
+    <label class="item item-stacked-label">
+        <span class="input-label">Service Charge: {{bill.serviceCharge}} %</span>
+        <div class="range range-assertive">
+         <input type="range" name="serviceCharge" min="0" max="20" placeholder="serviceCharge" ng-model="bill.serviceCharge" ng-change="calculateGrandTotal(bill)">
+     </div>
+ </label>
+</form>
+<ul class="list">
+    <div class="item item-divider">
+        Calculated Amount
+    </div>
+    <li class="item">
+        VAT Amount: {{bill.vatAmount | currency : '฿'}}
+    </li>
+    <li class="item">
+        Service Charge Amount: {{bill.serviceChargeAmount | currency : '฿'}}
+    </li>
+    <li class="item">
+        Grand Total: {{(bill.grandTotal || 0) | currency : '฿'}}
+    </li>
+</ul>
+<a href="#/shares" class="button button-energized button-block ion-chevron-right" ng-click="addBill(bill, $event);"> Next</a>
+</ion-content>
 </ion-view>

@@ -29,14 +29,20 @@ angular.module('app.services')
         var afterServiceCharge = Number(afterVat) + Number(bill.serviceChargeAmount);
 
         bill.grandTotal = afterServiceCharge;
+<<<<<<< HEAD
       }else {
         bill.totalAmount = undefined;
+=======
+      } else {
+>>>>>>> 05ee1d6c2b7e0ef9333d19def2cd751b180b39be
         bill.vatAmount = 0;
         bill.serviceChargeAmount = 0;
-        bill.grandTotal = undefined;
+        bill.grandTotal = 0;
       }
       return bill;
     },
+<<<<<<< HEAD
+=======
 
     resetBill: function(){
       bill = {
@@ -45,21 +51,23 @@ angular.module('app.services')
         vatAmount: 0,
         serviceCharge: 10,
         serviceChargeAmount: 0,
-        grandTotal: undefined
-      }
-    },
+        grandTotal: 0
+      };
+    }
+>>>>>>> 05ee1d6c2b7e0ef9333d19def2cd751b180b39be
 
     calculateTotalAmount: function(){
       if(bill.grandTotal) {
         bill.serviceChargeAmount = (bill.grandTotal * (bill.serviceCharge/100)).toFixed(2);
         var afterVat = Number(bill.grandTotal) - Number(bill.serviceChargeAmount);
+
         bill.vatAmount =  (afterVat * (bill.vat/100)).toFixed(2);
         bill.totalAmount = Number(afterVat) -Number(bill.vatAmount);
       }else {
         bill.totalAmount = undefined;
         bill.vatAmount = 0;
         bill.serviceChargeAmount = 0;
-        bill.grandTotal = undefined;
+        bill.grandTotal = 0;
       }
       return bill;
     }

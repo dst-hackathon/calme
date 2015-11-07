@@ -3,7 +3,6 @@ angular.module('app.controllers')
 .controller('billCtrl', function($scope, BillService, ionicToast) {
 
   $scope.bill = BillService.getBill();
-  $scope.bill.amountType = 0;
 
   $scope.addBill = function(bill, event) {
 
@@ -23,11 +22,4 @@ angular.module('app.controllers')
     $scope.bill = BillService.calculateGrandTotal();
   };
 
-  $scope.calculateTotalAmount = function(bill) {
-    BillService.setBill(angular.copy(bill));
-    $scope.bill = BillService.calculateTotalAmount();
-  };
-  $scope.canShowAmount = function(amountType) {
-    return $scope.bill.amountType == amountType;
-  };
 });
