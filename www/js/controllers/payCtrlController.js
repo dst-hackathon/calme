@@ -25,10 +25,10 @@ angular.module('app.controllers')
 			grandTotal: angular.copy($scope.totalValue),
 			bill: angular.copy(BillService.getBill()),
 			dishes: angular.copy(DishesService.all()),
-			people: SharesService.all()
+			people: angular.copy(SharesService.all())
 		};
 
-		HistoryService.addHistory(histObj);
+		HistoryService.addHistory(histObj);		
 		history.name = "";
 		ionicToast.show('Record saved.', 'top', false, 2500);
 	};
