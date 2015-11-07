@@ -86,7 +86,7 @@ angular.module('app.controllers')
     var totalShare = 0;
 
     $scope.dishes.forEach(function(dish){
-      totalShare += dish.price;
+      totalShare += Number(dish.price);
     })
 
     $scope.billTotal = billTotal - totalShare;
