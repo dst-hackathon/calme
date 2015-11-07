@@ -1,16 +1,18 @@
 angular.module('app.controllers')
 
-.controller('payCtrl', function($scope, DishesService, SharesService, BillService) {
+.controller('payCtrl', function($scope, DishesService, SharesService, BillService, OptionsService, BillService) {
 	//mockPeople();
 	var $expenseData = DishesService.all();
 	//var $expenseData = mockExpense();
 	var $people = SharesService.all();
+	var $bill = BillService.getBill();
 	var $totalValue = 0;
 	var $totalDetail = [];
 	
 	$scope.people = getSummaryData();
 	$scope.totalValue = $totalValue; 
 	$scope.totalDetail = $totalDetail;
+	$scope.bill = $bill;
 	
 	$scope.view = function($event, team) {
 		viewDetail($event, team);
@@ -32,7 +34,6 @@ angular.module('app.controllers')
 	function createPeople() {
 		var people = {};
 		for( index in  $people) {
-			console.log( $people[index] );
 			people[$people[index].name] = new plopleBill($people[index].name);
 		}
 		return people;
@@ -42,14 +43,22 @@ angular.module('app.controllers')
 		var currentList;
 		var price;
 		var name;
-		for(index in $expenseData) {
-			currentList = $expenseData[index];
-			price = currentList.price/currentList.people.length;
-			for(i in currentList.people) {
-				name = currentList.people[i].name;
-				console.log(currentList);
-				console.log(currentList.people);
-				people[name].addDish(currentList.name, price);
+		var vat = ($bill.vat == 0)? 1 : (1+($bill.vat/100));
+		var serviceCharge = ($bill.serviceCharge == 0)? 1: (1+($bill.serviceCharge/100));
+		
+		if (OptionsService.get() == "E") {
+			price = $bill.grandTotal/$people.length;
+			for(i in people) {
+				people[i].addDish("All menu", price, price);
+			}
+		} else {
+			for(index in $expenseData) {
+				currentList = $expenseData[index];
+				price = currentList.price/currentList.people.length;
+				for(i in currentList.people) {
+					name = currentList.people[i].name;
+					people[name].addDish(currentList.name, (price*vat*serviceCharge),price);
+				}
 			}
 		}
 	}
@@ -98,8 +107,8 @@ var plopleBill = function(name) {
 					else 
 						return {name: name, payAmount: total, detail: dish};
 				},
-				addDish: function(name, price) {
-					dish.push({ name:name, price: price });
+				addDish: function(name, price, oriPrice) {
+					dish.push({ name:name, price: price, oriPrice: oriPrice});
 					total += price;
 				}
 			};

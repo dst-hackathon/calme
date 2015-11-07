@@ -1,20 +1,26 @@
 angular.module('app.controllers')
 
-.controller('billCtrl', function($scope, BillService) {
+.controller('billCtrl', function($scope, BillService, ionicToast) {
 
   $scope.bill = BillService.getBill();
 
-  $scope.addBill = function(bill) {
-		BillService.setBill(angular.copy(bill));
-	};
+  $scope.addBill = function(bill, event) {
 
-  $scope.canDisable = function() {
-		return !$scope.bill.totalAmount || $scope.bill.totalAmount <= 0;
+    var tempBill = angular.copy(bill);
+
+    if(tempBill.totalAmount == undefined || tempBill.totalAmount < 0 ) {
+			ionicToast.show('The amount is invalid.', 'top', false, 2500);
+			event.stopPropagation();
+			event.preventDefault();
+		} else{
+		    BillService.setBill(angular.copy(bill));
+    }
 	};
 
   $scope.calculateGrandTotal = function(bill) {
   	BillService.setBill(angular.copy(bill));
     $scope.bill = BillService.calculateGrandTotal();
-	};
-  
+  };
+
+
 });

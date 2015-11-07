@@ -4,7 +4,9 @@ angular.module('app.services')
   var bill = {
     totalAmount: undefined,
     vat: 7,
-    serviceCharge: 10
+    vatAmount: 0,
+    serviceCharge: 10,
+    serviceChargeAmount: 0
   };
 
   return {
@@ -18,10 +20,15 @@ angular.module('app.services')
     },
 
     calculateGrandTotal: function(){
-      var afterVat = bill.totalAmount + (bill.totalAmount * (bill.vat/100));
-      var afterServiceCharge = afterVat + (afterVat * (bill.serviceCharge/100));
+      if(bill.totalAmount) {
+          bill.vatAmount = (bill.totalAmount * (bill.vat/100)).toFixed(2);
+          var afterVat = bill.totalAmount + bill.vatAmount;
 
-      bill.grandTotal = afterServiceCharge;
+          bill.serviceChargeAmount = (afterVat * (bill.serviceCharge/100)).toFixed(2);
+          var afterServiceCharge = afterVat + serviceChargeAmount;
+          
+          bill.grandTotal = afterServiceCharge;
+      }
       return bill;
     }
 
