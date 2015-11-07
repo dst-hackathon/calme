@@ -27,10 +27,10 @@
         </form>
 
         <button class="button button-balanced button-block ion-plus-circled" ng-click="addDish()"> {{currentDish.new ? 'add' : 'update'}}</button>
-        <a href="#/pay" class="button button-energized button-block ion-chevron-right"> next</a>
+        <a href="#" class="button button-energized button-block ion-chevron-right" ng-click="validateNext()"> next</a>
         <div>
             <p>
-              <strong>Split the rest</strong>
+              <strong>Total Amount Left</strong>
               THB {{billTotal}}
             </p>
         </div>
