@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('payCtrl', function($scope, DishesService, SharesService, BillService, OptionsService, BillService, HistoryService) {
+.controller('payCtrl', function($scope, DishesService, SharesService, BillService, OptionsService, BillService, HistoryService, ionicToast) {
 	//mockPeople();
 	var $expenseData = DishesService.all();
 	//var $expenseData = mockExpense();
@@ -20,15 +20,17 @@ angular.module('app.controllers')
 
   $scope.saveHistory = function(history){
 		var histObj = {
-			name: history.name,
+			name: angular.copy(history.name),
 			date: new Date(),
 			grandTotal: angular.copy($scope.totalValue),
 			bill: angular.copy(BillService.getBill()),
 			dishes: angular.copy(DishesService.all()),
 			people: SharesService.all()
 		};
+
 		HistoryService.addHistory(histObj);
-	
+		history.name = "";
+		ionicToast.show('Record saved.', 'top', false, 2500);
 	};
 
 	function getSummaryData() {
