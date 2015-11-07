@@ -1,15 +1,21 @@
 <ion-view title="Dishes" cache-view="false">
     <ion-content padding="true" class="has-header">
+        <div>
+            <p>
+              <strong>Total Amount Left: </strong>
+              <span class="totalAmount">{{billTotal | currency : '฿'}}</span>
+            </p>
+        </div>
         <form class="list">
             <div class="item item-divider">
               Enter a dish
             </div>
 
             <label class="item item-input ion-pizza" name="dishName">
-                <input type="text" placeholder=" dish's name" ng-model="currentDish.name">
+                <input type="text" placeholder="  Name" ng-model="currentDish.name">
             </label>
             <label class="item item-input ion-calculator" name="dishPrice">
-                <input type="number" class="assertive" placeholder=" price e.g. 100.00" ng-model="currentDish.price">
+                <input type="number" class="assertive" placeholder="  Price e.g. 100.00" ng-model="currentDish.price">
             </label>
         </form>
 
@@ -27,13 +33,6 @@
         </form>
 
         <button class="button button-balanced button-block ion-plus-circled" ng-click="addDish()"> {{currentDish.new ? 'add' : 'update'}}</button>
-        <a href="#" class="button button-energized button-block ion-chevron-right" ng-click="validateNext()"> next</a>
-        <div>
-            <p>
-              <strong>Total Amount Left</strong>
-              <span class="totalAmount">{{billTotal | currency : '฿'}}</span>
-            </p>
-        </div>
 
         <div class="card" ng-repeat="dish in dishes">
           <div class="item item-divider item-icon-right" >
@@ -53,5 +52,6 @@
             </div>
           </div>
         </div>
+        <a href="#" class="button button-energized button-block ion-chevron-right" ng-click="validateNext()"> Next</a>
     </ion-content>
 </ion-view>
