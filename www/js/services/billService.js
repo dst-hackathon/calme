@@ -6,7 +6,8 @@ angular.module('app.services')
     vat: 7,
     vatAmount: 0,
     serviceCharge: 10,
-    serviceChargeAmount: 0
+    serviceChargeAmount: 0,
+    grandTotal: 0
   };
 
   return {
@@ -42,7 +43,8 @@ angular.module('app.services')
         vat: 7,
         vatAmount: 0,
         serviceCharge: 10,
-        serviceChargeAmount: 0
+        serviceChargeAmount: 0,
+        grandTotal: 0
       };
     }
 

@@ -37,7 +37,7 @@ angular.module('app.controllers')
 			dishes: angular.copy(DishesService.all()),
 			people: angular.copy(SharesService.all())
 		};
-		console.log(histObj);
+
 		HistoryService.addHistory(histObj);
 		$scope.history.name = "";
 		ionicToast.show('Record saved.', 'top', false, 2500);
