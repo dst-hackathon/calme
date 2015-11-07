@@ -4,17 +4,17 @@
    			<div ng-repeat="x in people">
 				<div class="item item-divider" ng-click="view($event, team);">
 					<h2>{{x.name}}</h2>
-					<strong style="float: right;">{{x.payAmount | currency}}</strong>
+					<strong style="float: right;">{{x.payAmount | currency : '฿'}}</strong>
 				</div>
 
 				<div class="item item-text-wrap detailPanel" ng-if="$index == 0">
 					<div ng-repeat="y in x.detail">
 						{{y.name}}
 						<div style="float: right;" ng-if="y.price > 0">
-							{{y.price | currency}} ({{y.oriPrice | currency}} <span style="color: green;">+ {{(y.price - y.oriPrice) | currency}}</span>)
+							{{y.price | currency : '฿'}} ({{y.oriPrice | currency : '฿'}} <span style="color: green;">+ {{(y.price - y.oriPrice) | currency : '฿'}}</span>)
 						</div>
 						<div style="float: right;" ng-if="y.price == 0">
-							{{y.price | currency}}
+							{{y.price | currency : '฿'}}
 						</div>
 					</div>
 				</div>
@@ -22,10 +22,10 @@
 					<div ng-repeat="y in x.detail">
 						{{y.name}}
 						<div style="float: right;" ng-if="y.price > 0">
-							{{y.price | currency}} ({{y.oriPrice | currency}} <span style="color: green;">+ {{(y.price - y.oriPrice) | currency}}</span>)
+							{{y.price | currency : '฿'}} ({{y.oriPrice | currency : '฿'}} <span style="color: green;">+ {{(y.price - y.oriPrice) | currency : '฿'}}</span>)
 						</div>
 						<div style="float: right;" ng-if="y.price == 0">
-							{{y.price | currency}}
+							{{y.price | currency : '฿'}}
 						</div>
 					</div>
 				</div>
@@ -33,12 +33,12 @@
 			<div>
 				<div class="item item-divider">
 					<h2 style="text-decoration: underline;">Total</h2>
-					<strong style="float: right;text-decoration: underline;">{{totalValue | currency}}</strong>
+					<strong style="float: right;text-decoration: underline;">{{totalValue | currency : '฿'}}</strong>
 				</div>
 				<div class="item item-text-wrap">
 					<div>
 						<div >Sub total
-							<span style="float: right;">{{bill.totalAmount | currency}}</span>
+							<span style="float: right;">{{bill.totalAmount | currency : '฿'}}</span>
 						</div>
 						<div class="clear"></div>
 					</div>
@@ -56,7 +56,7 @@
 					</div>
 					<div>
 						<div>Grand Total
-							<span style="float: right;">{{bill.grandTotal | currency}}</span>
+							<span style="float: right;">{{bill.grandTotal | currency : '฿'}}</span>
 						</div>
 						<div class="clear"></div>
 					</div>
@@ -69,7 +69,7 @@
                <input type="text" placeholder="History's name" ng-model="history.name" maxLength="50" ng-click="clear();">
            </label>
        </form>
-       <button class="button button-balanced button-block ion-arrow-down-a" ng-click="saveHistory(history);"> Save</button>
+       <button class="button button-balanced button-block ion-arrow-down-a" ng-click="saveHistory(history.name);"> Save</button>
 
     </ion-content>
 </ion-view>
