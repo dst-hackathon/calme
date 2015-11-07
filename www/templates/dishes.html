@@ -35,7 +35,7 @@
           </li>
         </form>
 
-        <button class="button button-balanced button-block ion-plus-circled" ng-click="addDish()"> {{currentDish.new ? 'add' : 'update'}}</button>
+        <button class="button button-balanced button-block ion-plus-circled" ng-click="addDish()"> {{currentDish.new ? 'Add' : 'Update'}}</button>
 
         <div class="card" ng-repeat="dish in dishes">
           <div class="item item-divider item-icon-right" >
@@ -44,7 +44,7 @@
             &nbsp;
             <span class="ion-close" ng-click="removeDish(dish)"></span>
           </div>
-            {{dish.name}} / {{dish.price}}
+            {{dish.name}}: {{dish.price | currency : '฿'}}
           </div>
           <div class="item item-text-wrap">
             <div class="list">
