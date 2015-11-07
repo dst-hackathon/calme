@@ -1,9 +1,7 @@
 angular.module('app.controllers')
 
 .controller('payCtrl', function($scope, DishesService, SharesService, BillService, OptionsService, BillService, HistoryService, ionicToast) {
-	//mockPeople();
 	var $expenseData = DishesService.all();
-	//var $expenseData = mockExpense();
 	var $people = SharesService.all();
 	var $bill = BillService.getBill();
 	var $totalValue = 0;
@@ -74,14 +72,16 @@ angular.module('app.controllers')
 	function calculateBill(people) {
 		var currentList;
 		var price;
+		var oriPrice;
 		var name;
 		var vat = ($bill.vat == 0)? 1 : (1+($bill.vat/100));
 		var serviceCharge = ($bill.serviceCharge == 0)? 1: (1+($bill.serviceCharge/100));
 
 		if (OptionsService.get() == "E") {
 			price = $bill.grandTotal/$people.length;
+			oriPrice = $bill.totalAmount/$people.length;
 			for(i in people) {
-				people[i].addDish("All menu", price, price);
+				people[i].addDish("All menu", price, oriPrice);
 			}
 		} else {
 			for(index in $expenseData) {
@@ -98,31 +98,6 @@ angular.module('app.controllers')
 	function viewDetail($event, team) {
 		angular.element(document.getElementsByClassName("detailPanel")).addClass("hidden");
 		angular.element($event.currentTarget).next().toggleClass("hidden");
-	}
-
-	function mockPeople() {
-		SharesService.addPeople({name:"Seph"});
-		SharesService.addPeople({name:"Ohm"});
-		SharesService.addPeople({name:"Sam"});
-	}
-
-	function mockExpense() {
-		return [{
-					name: "Noodle",
-					people: [{name:"Sam"},{name:"Seph"},{name:"Ohm"}],
-					price: 2000,
-					new: true},
-				{
-					name: "Fire Rice",
-					people: [{name:"Sam"},{name:"Seph"}],
-					price: 4000,
-					new: true},
-				{
-					name: "Papaya salad",
-					people: [{name:"Seph"},{name:"Ohm"}],
-					price: 5500,
-					new: true}
-				];
 	}
 });
 
