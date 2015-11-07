@@ -13,22 +13,22 @@ angular.module('app.controllers')
 	$scope.totalValue = $totalValue;
 	$scope.totalDetail = $totalDetail;
 	$scope.bill = $bill;
-	
+
 	$scope.view = function($event, team) {
 		viewDetail($event, team);
 	}
 
-  $scope.saveHistory = function(){
-		HistoryService.addHistory(
-			{
-				name: 'defaultHistory',
-				date: new Date().toString(),
-				grandTotal: angular.copy($scope.totalValue),
-				bill: angular.copy(BillService.getBill()),
-				dishes: angular.copy(DishesService.all()),
-				people: SharesService.all()
-			}
-		);
+  $scope.saveHistory = function(history){
+		var histObj = {
+			name: history.name,
+			date: new Date(),
+			grandTotal: angular.copy($scope.totalValue),
+			bill: angular.copy(BillService.getBill()),
+			dishes: angular.copy(DishesService.all()),
+			people: SharesService.all()
+		};
+		HistoryService.addHistory(histObj);
+	
 	};
 
 	function getSummaryData() {
@@ -46,10 +46,8 @@ angular.module('app.controllers')
 
 	function createPeople() {
 		var people = {};
-		var name;
 		for( index in  $people) {
-			name= $people[index].name
-			people[name] = new plopleBill(name);
+			people[$people[index].name] = new plopleBill($people[index].name);
 		}
 		return people;
 	}
