@@ -1,4 +1,4 @@
-<ion-view title="Pay">
+<ion-view title="Pay" cache-view="false">
     <ion-content padding="true" class="has-header">
     	<div class="list card">
    			<div ng-repeat="x in people">
@@ -63,7 +63,7 @@
 				</div>
 			</div>
        </div>
-        <a href="#/history" class="button button-assertive button-full  icon ion-android-sync">start all over</a>
+        <a href="#/history" class="button button-assertive button-full  icon ion-android-sync" ng-click="clear();>start all over</a>
        <form class="list">
            <label class="item item-input" name="historyName">
                <input type="text" placeholder="History's name" ng-model="history.name" maxLength="50" ng-click="clear();">
