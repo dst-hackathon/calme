@@ -6,7 +6,14 @@
 					<h2>{{x.name}}</h2>
 					<strong style="float: right;">{{x.payAmount | currency}}</strong>
 				</div>
-				<div class="item item-text-wrap hidden detailPanel">
+				
+				<div class="item item-text-wrap detailPanel" ng-if="$index == 0">
+					<div ng-repeat="y in x.detail">
+						{{y.name}}
+						<div style="float: right;">{{y.price | currency}}</div>
+					</div>
+				</div>
+				<div class="item item-text-wrap hidden detailPanel" ng-if="$index != 0">
 					<div ng-repeat="y in x.detail">
 						{{y.name}}
 						<div style="float: right;">{{y.price | currency}}</div>
