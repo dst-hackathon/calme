@@ -1,25 +1,30 @@
 <ion-view title="history" hide-nav-bar="true">
     <ion-content padding="true" scroll="false">
-        <div>
-            <a href="#/bill" class="button button-stable button-full ">
+        <div style="height:20%">
+            <a href="#/bill" class="button button-clear button-stable button-full">
                 <img ng-src="img/man.png">
-                <div>CalMe</div>
             </a>
         </div>
 
-
-        <ion-scroll direction="y">
-            <div class="list card" ng-repeat="record in historyRecords">
-              <div class="item item-avatar">
-                <img src="img/plate.png">
-                <h2>{{record.date}}</h2>
-                <p>{{record.name}}</p>
-              </div>
-              <div class="item item-body">
-                <p>{{record.grandTotal}}</p>
-              </div>
-            </div>            
-        </ion-scroll>
+        <div class="card">
+            <div class="item item-divider">
+                History
+            </div>
+            <div style="padding: 0px 10px;">
+                <ion-scroll direction="y" has-bouncing="true">
+                    <div class="list card" ng-repeat="record in historyRecords">
+                      <div class="item item-avatar">
+                        <img src="img/plate.png">
+                        <h2>{{record.date}}</h2>
+                        <p>{{record.name}}</p>
+                      </div>
+                      <div class="item item-body">
+                        <p>Grand Total: ฿{{record.grandTotal}}</p>
+                      </div>
+                    </div>            
+                </ion-scroll>
+            </div>
+        </div>
 
     </ion-content>
 </ion-view>
