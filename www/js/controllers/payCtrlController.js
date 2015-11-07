@@ -19,14 +19,8 @@ angular.module('app.controllers')
 	$scope.view = function($event, team) {
 		viewDetail($event, team);
 	}
-	
-	$scope.clear = function($event, team) {
-		BillService.resetBill();
-		SharesService.clear();
-		DishesService.clear();
-	}
 
-	$scope.saveHistory = function(history){
+  $scope.saveHistory = function(history){
 		var getDate = function(){
 			var date = new Date();
 			return (date.getMonth()+1).toString() + '/'
@@ -43,7 +37,7 @@ angular.module('app.controllers')
 			dishes: angular.copy(DishesService.all()),
 			people: angular.copy(SharesService.all())
 		};
-		console.log(histObj);
+
 		HistoryService.addHistory(histObj);
 		$scope.history.name = "";
 		ionicToast.show('Record saved.', 'top', false, 2500);
