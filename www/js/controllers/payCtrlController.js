@@ -20,6 +20,13 @@ angular.module('app.controllers')
 		viewDetail($event, team);
 	}
 
+	
+	$scope.clear = function($event, team) {
+		BillService.resetBill();
+		SharesService.clear();
+		DishesService.clear();
+	}
+
   $scope.saveHistory = function(history){
 		var getDate = function(){
 			var date = new Date();

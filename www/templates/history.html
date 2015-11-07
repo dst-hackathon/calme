@@ -1,7 +1,7 @@
 <ion-view title="history" hide-nav-bar="true">
     <ion-content padding="true" scroll="false">
         <div style="height:20%">
-            <a href="#/bill" class="button button-clear button-stable button-full">
+            <a href="#/bill" class="button button-clear button-stable button-full" ng-click="newTransaction()">
                 <img ng-src="img/man.png">
             </a>
         </div>
@@ -12,7 +12,7 @@
             </div>
             <div style="padding: 0px 10px;">
                 <ion-scroll direction="y" has-bouncing="true">
-                    <div class="list card" ng-repeat="record in historyRecords">
+                    <div class="list card" ng-repeat="record in historyRecords" ng-click="loadTransaction(record)">
                       <div class="item item-avatar">
                         <img src="img/plate.png">
                         <h2>{{record.date}}</h2>
@@ -21,7 +21,7 @@
                       <div class="item item-body">
                         <p>Grand Total: ฿{{record.grandTotal}}</p>
                       </div>
-                    </div>            
+                    </div>
                 </ion-scroll>
             </div>
         </div>

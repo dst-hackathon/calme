@@ -18,6 +18,9 @@ angular.module('app.services')
     },
     clear: function() {
     	this.people = [];
+    },
+    setPeople: function(people) {
+      this.people = people;
     }
   };
 }]);

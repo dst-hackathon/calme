@@ -12,8 +12,8 @@ angular.module('app.services')
 
   return {
 
-    setBill: function(bill) {
-      bill = bill;
+    setBill: function(value) {
+      bill = value;
     },
 
     getBill: function() {
