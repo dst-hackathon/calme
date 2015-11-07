@@ -18,7 +18,7 @@ angular.module('app.controllers')
 		viewDetail($event, team);
 	}
 
-	
+
 	$scope.clear = function($event, team) {
 		BillService.resetBill();
 		SharesService.clear();
@@ -98,8 +98,8 @@ angular.module('app.controllers')
 	}
 
 	function viewDetail($event, team) {
-		angular.element(document.getElementsByClassName("detailPanel")).addClass("hidden");
-		angular.element($event.currentTarget).next().toggleClass("hidden");
+//		angular.element(document.getElementsByClassName("detailPanel")).addClass("hidden");
+//		angular.element($event.currentTarget).next().toggleClass("hidden");
 	}
 });
 
