@@ -43,14 +43,14 @@
 						<div class="clear"></div>
 					</div>
 					<div>
-						<div >Tax 
-							<span style="float: right;">{{bill.vat}} %</span>
+						<div >Tax ({{bill.vat}} %)
+							<span style="float: right;">{{bill.vatAmount | currency : '฿'}}</span>
 						</div>
 						<div class="clear"></div>
 					</div>
 					<div>
-						<div>Tip
-							<span style="float: right;">{{bill.serviceCharge}} %</span>
+						<div>Tip ({{bill.serviceCharge}} %)
+							<span style="float: right;">{{bill.serviceChargeAmount | currency : '฿'}}</span>
 						</div>
 						<div class="clear"></div>
 					</div>
