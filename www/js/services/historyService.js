@@ -16,7 +16,7 @@ angular.module('app.services')
       var dHistory = {
         name: 'defaultHistory',
         date: formatDate(new Date()),
-        grandTotal: 100.00
+        grandTotal: 100.00,
         bill: null,
         dishes: null,
         people: null
