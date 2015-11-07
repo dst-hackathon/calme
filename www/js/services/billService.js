@@ -20,13 +20,15 @@ angular.module('app.services')
     },
 
     calculateGrandTotal: function(){
-      bill.vatAmount = (bill.totalAmount * (bill.vat/100)).toFixed(2);
-      var afterVat = bill.totalAmount + bill.vatAmount;
+      if(bill.totalAmount) {
+          bill.vatAmount = (bill.totalAmount * (bill.vat/100)).toFixed(2);
+          var afterVat = bill.totalAmount + bill.vatAmount;
 
-      bill.serviceChargeAmount = (afterVat * (bill.serviceCharge/100)).toFixed(2);
-      var afterServiceCharge = afterVat + serviceChargeAmount;
-
-      bill.grandTotal = afterServiceCharge;
+          bill.serviceChargeAmount = (afterVat * (bill.serviceCharge/100)).toFixed(2);
+          var afterServiceCharge = afterVat + serviceChargeAmount;
+          
+          bill.grandTotal = afterServiceCharge;
+      }
       return bill;
     }
 
