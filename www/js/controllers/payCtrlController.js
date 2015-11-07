@@ -63,8 +63,10 @@ angular.module('app.controllers')
 
 	function createPeople() {
 		var people = {};
+		var name;
 		for( index in  $people) {
-			people[$people[index].name] = new plopleBill($people[index].name);
+			name = $people[index].name;
+			people[name] = new plopleBill(name);
 		}
 		return people;
 	}
@@ -81,7 +83,7 @@ angular.module('app.controllers')
 			price = $bill.grandTotal/$people.length;
 			oriPrice = $bill.totalAmount/$people.length;
 			for(i in people) {
-				people[i].addDish("All menu", price, oriPrice);
+				people[i].addDish("All Menu", price, oriPrice);
 			}
 		} else {
 			for(index in $expenseData) {

@@ -2,14 +2,14 @@
     <ion-content padding="true" class="has-header">
     	<div class="list card">
    			<div ng-repeat="x in people">
-				<div class="item item-divider" ng-click="view($event, team);">
+				<div class="item item-divider custom" ng-click="view($event, team);">
 					<h2>{{x.name}}</h2>
 					<strong style="float: right;">{{x.payAmount | currency : '฿'}}</strong>
 				</div>
 
 				<div class="item item-text-wrap detailPanel" ng-if="$index == 0">
 					<div ng-repeat="y in x.detail">
-						{{y.name}}
+						- {{y.name}}
 						<div style="float: right;" ng-if="y.price > 0">
 							{{y.price | currency : '฿'}} ({{y.oriPrice | currency : '฿'}} <span style="color: green;">+ {{(y.price - y.oriPrice) | currency : '฿'}}</span>)
 						</div>
@@ -17,10 +17,11 @@
 							{{y.price | currency : '฿'}}
 						</div>
 					</div>
+					<div class="clear"></div>
 				</div>
 				<div class="item item-text-wrap hidden detailPanel" ng-if="$index != 0">
 					<div ng-repeat="y in x.detail">
-						{{y.name}}
+						- {{y.name}}
 						<div style="float: right;" ng-if="y.price > 0">
 							{{y.price | currency : '฿'}} ({{y.oriPrice | currency : '฿'}} <span style="color: green;">+ {{(y.price - y.oriPrice) | currency : '฿'}}</span>)
 						</div>
@@ -28,11 +29,12 @@
 							{{y.price | currency : '฿'}}
 						</div>
 					</div>
+					<div class="clear"></div>
 				</div>
 			</div>
 			<div>
-				<div class="item item-divider">
-					<h2 style="text-decoration: underline;">Total</h2>
+				<div class="item item-divider custom total">
+					<h2 style="text-decoration: underline;" class="custom total">Total</h2>
 					<strong style="float: right;text-decoration: underline;">{{totalValue | currency : '฿'}}</strong>
 				</div>
 				<div class="item item-text-wrap">
