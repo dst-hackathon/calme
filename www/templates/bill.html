@@ -11,14 +11,14 @@
                 <label class="item item-stacked-label">
                     <span class="input-label">VAT: {{bill.vat}} %</span>
                     <div class="range range-assertive">
-                        <input type="range" name="vat" min="0" max="10" placeholder="VAT" ng-model="bill.vat" ng-change="calculateGrandTotal(bill)">
+                        <input type="range" name="vat" min="0" max="10" placeholder="vat" ng-model="bill.vat" ng-change="calculateGrandTotal(bill)">
                     </div>
                 </label>
                 <!-- SERVICE CHARGE -->
                 <label class="item item-stacked-label">
                     <span class="input-label">Service Charge: {{bill.serviceCharge}} %</span>
                     <div class="range range-assertive">
-                       <input type="range" name="serviceCharge" min="0" max="20" placeholder="service charge (e.g. 5.00)" ng-model="bill.serviceCharge" ng-change="calculateGrandTotal(bill)">
+                       <input type="range" name="serviceCharge" min="0" max="20" placeholder="serviceCharge" ng-model="bill.serviceCharge" ng-change="calculateGrandTotal(bill)">
                     </div>
                 </label>
             </div>
