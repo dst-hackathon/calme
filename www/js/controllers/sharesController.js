@@ -23,7 +23,7 @@ angular.module('app.controllers')
 				people.name = '';
 			}
 		}else{
-			ionicToast.show('Please add peoples!', 'top', false, 2500);
+			ionicToast.show('Please add people!', 'top', false, 2500);
 		}
 	};
 
@@ -33,7 +33,7 @@ angular.module('app.controllers')
 
 	$scope.validatePeople = function(event) {
 		if($scope.list.length <= 1) {
-			ionicToast.show('Please add at least two peoples', 'top', false, 2500);
+			ionicToast.show('Please add at least two people', 'top', false, 2500);
 			event.stopPropagation();
 			event.preventDefault();
 		}
