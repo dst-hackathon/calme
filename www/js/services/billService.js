@@ -28,6 +28,10 @@ angular.module('app.services')
         var afterServiceCharge = Number(afterVat) + Number(bill.serviceChargeAmount);
 
         bill.grandTotal = afterServiceCharge;
+      } else {
+        bill.vatAmount = 0;
+        bill.serviceChargeAmount = 0;
+        bill.grandTotal = 0;
       }
       return bill;
     }
