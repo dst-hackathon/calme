@@ -27,6 +27,15 @@ angular.module('app.controllers')
     BillService.setBill(angular.copy(bill));
     $scope.bill = BillService.calculateTotalAmount();
   };
+
+  $scope.calculateAmount = function(bill) {
+    if($scope.bill.amountType == 0) {
+      $scope.calculateGrandTotal(bill);
+    }else if($scope.bill.amountType == 1) {
+      $scope.calculateTotalAmount(bill);
+    }
+  };
+
   $scope.canShowAmount = function(amountType) {
     return $scope.bill.amountType == amountType;
   };

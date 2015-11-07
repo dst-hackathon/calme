@@ -6,7 +6,7 @@
             Amount Type
         </div>
         <select ng-model="bill.amountType">
-            <option ng-selected="true" value="0">Bill Before Tax</option>
+            <option ng-selected="true" value="0">Bill Before VAT</option>
             <option value="1">Grand Total</option>
         </select>
     </label>
@@ -15,21 +15,21 @@
         <span class="input-label ion-calculator">
             Amount
         </span>
-        <input type="number" placeholder="Enter bill before tax (e.g. 100.00)" ng-model="bill.totalAmount" ng-change="calculateGrandTotal(bill)" required ng-show="canShowAmount(0)">
-        <input type="number" placeholder="Enter grand total (e.g. 100.00)" ng-model="bill.grandTotal" ng-change="calculateTotalAmount(bill)" required ng-show="canShowAmount(1)">
+        <input type="number" placeholder="Enter bill before VAT (e.g. 100.00)" ng-model="bill.totalAmount" ng-change="calculateAmount(bill)" required ng-show="canShowAmount(0)">
+        <input type="number" placeholder="Enter grand total (e.g. 100.00)" ng-model="bill.grandTotal" ng-change="calculateAmount(bill)" required ng-show="canShowAmount(1)">
     </label>
     <!-- VAT -->
     <label class="item item-stacked-label">
         <span class="input-label">VAT: {{bill.vat}} %</span>
         <div class="range range-assertive">
-            <input type="range" name="vat" min="0" max="10" placeholder="vat" ng-model="bill.vat" ng-change="calculateGrandTotal(bill)">
+            <input type="range" name="vat" min="0" max="10" placeholder="vat" ng-model="bill.vat" ng-change="calculateAmount(bill)">
         </div>
     </label>
     <!-- SERVICE CHARGE -->
     <label class="item item-stacked-label">
         <span class="input-label">Service Charge: {{bill.serviceCharge}} %</span>
         <div class="range range-assertive">
-         <input type="range" name="serviceCharge" min="0" max="20" placeholder="serviceCharge" ng-model="bill.serviceCharge" ng-change="calculateGrandTotal(bill)">
+         <input type="range" name="serviceCharge" min="0" max="20" placeholder="serviceCharge" ng-model="bill.serviceCharge" ng-change="calculateAmount(bill)">
      </div>
  </label>
 </form>

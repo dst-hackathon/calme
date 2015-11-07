@@ -7,7 +7,7 @@ angular.module('app.services')
     vatAmount: 0,
     serviceCharge: 10,
     serviceChargeAmount: 0,
-    grandTotal: 0
+    grandTotal: undefined
   };
 
   return {
