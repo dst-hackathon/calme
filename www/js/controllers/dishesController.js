@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('dishesCtrl', function($scope, DishesService, SharesService, BillService) {
+.controller('dishesCtrl', function($scope, $state, DishesService, SharesService, BillService, ionicToast) {
 
   function init() {
     calculateLeftAmount();
@@ -49,6 +49,14 @@ angular.module('app.controllers')
     editDish: function(dish) {
       $scope.currentDish = angular.copy(dish);
       calculateLeftAmount();
+    },
+
+    validateNext : function() {
+      if( $scope.billTotal == 0  ) {
+        $state.go("pay");
+      } else {
+        ionicToast.show('You have not split all dishes. Please make it until amount goes zero', 'top', false, 2000);
+      }
     }
 
   });
