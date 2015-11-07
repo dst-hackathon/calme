@@ -76,9 +76,15 @@ angular.module('app.controllers')
 
   function removePersonFromCurrentDish(person) {
     var currentPeople = $scope.currentDish.people,
-        currentIndex = currentPeople.findIndex(function(currentPerson) {
-          return currentPerson.id === person.id;
-        });
+        currentIndex = -1;
+
+    for (var i = 0; i < currentPeople.length; i++) {
+      var currentPerson = currentPeople[i];
+
+      if (currentPerson.id === person.id) {
+        currentIndex = i;
+      }
+    }
 
     currentPeople.splice(currentIndex, 1);
   }

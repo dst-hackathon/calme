@@ -4,11 +4,15 @@ angular.module('app.services')
   var dishes = [];
 
   function getDishIndexById(id) {
-    var index = dishes.findIndex(function(dish) {
-      return dish.id === id;
-    });
+    for (var i = 0; i < dishes.length; i++) {
+      var dish = dishes[i];
 
-    return index;
+      if (dish.id === id) {
+        return i;
+      }
+    }
+
+    return -1;
   }
 
   return {
