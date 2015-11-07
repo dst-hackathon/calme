@@ -1,10 +1,10 @@
 angular.module('app.services')
 
-.service('HistoryService',
-         ['$localStorage', 'BillService', 'SharesService', 'DishesService',
-  function($localStorage, BillService, SharesService, DishesService){
+.service('HistoryService', [function(){
+  var history = [];
 
-  var formatDate = function(date){
+  var getDate = function(){
+    var date = new Date();
     return (date.getMonth()+1).toString() + '/'
       + date.getDate().toString() + '/'
       + date.getFullYear().toString() + '  '
@@ -16,8 +16,8 @@ angular.module('app.services')
     addDefaultHistory: function(){
       var dHistory = {
         name: 'defaultHistory',
-        date: formatDate(new Date()),
-        grandTotal: 100.00,
+        date: getDate(),
+        grandTotal: 100.00
         bill: null,
         dishes: null,
         people: null
@@ -26,19 +26,13 @@ angular.module('app.services')
     },
 
     getHistory: function(){
-      return $localStorage.get('calme.history.entries') || [];
+      return history;
     },
-
     addHistory: function(historyToAdd){
-      var historyEntries = this.getHistory();
-
-      $localStorage.set('calme.history.entries', historyEntries.concat([ historyToAdd ]));
+      history.push(historyToAdd);
     },
-
-    loadHistory: function(history) {
-      BillService.setBill(history.bill);
-      SharesService.setPeople(history.people);
-      DishesService.setDishes(history.dishes);
+    getHistoryByIndex: function(index){
+      return history[index];
     }
 
   };
