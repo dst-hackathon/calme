@@ -1,4 +1,4 @@
-<ion-view title="pay">
+<ion-view title="Pay">
     <ion-content padding="true" class="has-header">
     	<div class="list card">
    			<div ng-repeat="x in people">
@@ -40,7 +40,6 @@
 						<div >Sub total
 							<span style="float: right;">{{bill.totalAmount | currency}}</span>
 						</div>
-						
 						<div class="clear"></div>
 					</div>
 					<div>
@@ -67,7 +66,7 @@
         <a href="#/history" class="button button-assertive button-full  icon ion-android-sync">start all over</a>
        <form class="list">
            <label class="item item-input" name="historyName">
-               <input type="text" placeholder="History's name" ng-model="history.name" maxLength="50">
+               <input type="text" placeholder="History's name" ng-model="history.name" maxLength="50" ng-click="clear();">
            </label>
        </form>
        <button class="button button-balanced button-block ion-arrow-down-a" ng-click="saveHistory(history.name);"> Save</button>
