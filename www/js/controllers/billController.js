@@ -8,7 +8,7 @@ angular.module('app.controllers')
 
     var tempBill = angular.copy(bill);
 
-    if(tempBill.totalAmount == undefined || tempBill.totalAmount < 0 ) {
+    if(tempBill.totalAmount == undefined || isNaN(tempBill.totalAmount) || tempBill.totalAmount <= 0) {
 			ionicToast.show('The amount is invalid.', 'top', false, 2500);
 			event.stopPropagation();
 			event.preventDefault();
@@ -21,6 +21,5 @@ angular.module('app.controllers')
   	BillService.setBill(angular.copy(bill));
     $scope.bill = BillService.calculateGrandTotal();
   };
-
 
 });
