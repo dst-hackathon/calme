@@ -6,7 +6,7 @@ angular.module('app.services')
   var getDate = function(){
     var date = new Date();
     return (date.getMonth()+1).toString() + '/'
-      + date.getDate().toString() + '/' 
+      + date.getDate().toString() + '/'
       + date.getFullYear().toString() + '  '
       + date.toLocaleTimeString();
   };
@@ -18,6 +18,9 @@ angular.module('app.services')
         name: 'defaultHistory',
         date: getDate(),
         grandTotal: 100.00
+        bill: null,
+        dishes: null,
+        people: null
       };
       this.addHistory(dHistory);
     },
