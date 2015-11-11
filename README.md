@@ -38,3 +38,4 @@ https://drive.google.com/file/d/0B1-QqU-DaQr_UDhXSWo1U3BTSjA/view?usp=sharing
 8. Connect your iOS device to your computer
 9. Xcode > Top Left > Select Your Device > Press Play button
 
+Reference: http://junerockwell.com/how-to-run-ionic-on-real-devices/
