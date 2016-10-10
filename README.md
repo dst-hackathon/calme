@@ -21,7 +21,7 @@ ionic create https://creator.ionic.io/share/3f9614ea0aff
 6. ionic build
 ```
 
-### Binary download (Nov 7,2015)
+### Binary download v0.0.1 (Nov 7,2015)
 https://drive.google.com/file/d/0B1-QqU-DaQr_UDhXSWo1U3BTSjA/view?usp=sharing
 
 ### Run on iOS Device
